@@ -1,9 +1,13 @@
 'use strict';
+// 99 - Call on Page Load
 // 00 - Website Test Form
 // 01 - Page Insights API
 // 02 - Snapshot API
 // 03 - Display Elements
 // 04 - Contact Form
+// 05 - Booking Button
+// 06 - Call Listeners For Rendered Elements
+// 07 - Animations
 
 // 00 - website test form
 function handleWebsiteForm() {
@@ -37,9 +41,37 @@ function displayElements() {
   console.log(`displayElements ran`);
 };
 // 04 - contact form
+function createContactForm() {
+  console.log(`createContactForm ran`);
+};
 function validateEmail() {
   console.log(`validateEmail ran`);
 };
 function handleContactForm() {
   console.log(`handleContactForm ran`);
 };
+// 05 - booking button
+function handleBookButton() {
+  console.log(`handleBookButton ran`);
+};
+// 06 - call listeners
+function handleResultsPage() {
+  console.log(`handleResultsPage ran`);
+};
+// 07 - animations
+
+// 99 - on page load calls
+function handleOnPageLoad() {
+  handleWebsiteForm();
+};
+$(handleOnPageLoad());
+
+// 99 - Call on Page Load
+// 00 - Website Test Form
+// 01 - Page Insights API
+// 02 - Snapshot API
+// 03 - Display Elements
+// 04 - Contact Form
+// 05 - Booking Button
+// 06 - Call Listeners For Rendered Elements
+// 07 - Animations
