@@ -22,10 +22,10 @@ function formatWebsiteString(input) {
   let filterS = input.includes('https://');
   if (filter == true || filterS == true) {
     createPageInsightsUrl(`url=${input}`);
-    createSnapshotUrl(`url=${input}`);
+    createSnapshotUrl(`${input}`);
   } else {
     createPageInsightsUrl(`url=http://${input}`);
-    createSnapshotUrl(`url=http://${input}`);
+    createSnapshotUrl(`http://${input}`);
   }
 };
 // 01 - page insights api
@@ -42,46 +42,43 @@ function createPageInsightsUrl(uri) {
   getPageInsightsDesktop(pageDesktop, option);
   getPageInsightsMobile(pageMobile, option);
 };
-function getPageInsightsDesktop(url, option) {
-  fetch(url, option)
+function getPageInsightsDesktop(pageDesktop, option) {
+  fetch(pageDesktop, option)
   .then(response => {
     if (response.ok) {
       return response.json();
     }
     throw new Error (response.statusText);
   })
-  .then(desktopJson => console.log(desktopJson))
+  .then(desktopJson => createElements(desktopJson.lighthouseResult))
   .catch(err => {
     console.log(`error: ${err.message}`);
   });
 };
-function getPageInsightsMobile(url, option) {
-  fetch(url, option)
+function getPageInsightsMobile(pageMobile, option) {
+  fetch(pageMobile, option)
   .then(response => {
     if (response.ok) {
       return response.json();
     }
     throw new Error (response.statusText);
   })
-  .then(mobileJson => console.log(mobileJson))
+  .then(mobileJson => createElements(mobileJson.lighthouseResult))
   .catch(err => {
     console.log(`error: ${err.message}`);
   });
 };
-function createPageInsightsElements() {
-  console.log(`createPageInsightsElements ran`);
-};
-// 02 - snapshot api
+// 02 - snapshot 
 function createSnapshotUrl(uri) {
-  console.log(`createSnapshotUrl(${uri}) ran`);
-};
-function getSnapshot() {
-  console.log(`getSnapshot ran`);
-};
-function createSnapshotElements() {
-  console.log(`createSnapshotElements ran`);
+  const snapshot = `https://image.thum.io/get/${uri}`
+  createElements(snapshot);
 };
 // 03 - display elements
+function createElements(desktopJson, mobileJson, snapshot) {
+  console.log(desktopJson);
+  console.log(mobileJson);
+  console.log(snapshot);
+};
 function displayElements() {
   console.log(`displayElements ran`);
 };
