@@ -43,14 +43,31 @@ function createPageInsightsUrl(uri) {
   getPageInsightsMobile(pageMobile, option);
 };
 function getPageInsightsDesktop(url, option) {
-  
-  console.log(`getPageInsight ran`);
+  fetch(url, option)
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error (response.statusText);
+  })
+  .then(desktopJson => console.log(desktopJson))
+  .catch(err => {
+    console.log(`error: ${err.message}`);
+  });
 };
 function getPageInsightsMobile(url, option) {
-  
-  console.log(`getPageInsight ran`);
+  fetch(url, option)
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error (response.statusText);
+  })
+  .then(mobileJson => console.log(mobileJson))
+  .catch(err => {
+    console.log(`error: ${err.message}`);
+  });
 };
-
 function createPageInsightsElements() {
   console.log(`createPageInsightsElements ran`);
 };
