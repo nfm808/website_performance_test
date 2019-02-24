@@ -11,24 +11,52 @@
 
 // 00 - website test form
 function handleWebsiteForm() {
-  console.log(`handleWebsiteForm ran`);
+  $('#website_entry').submit(function(e) {
+    e.preventDefault();
+    let input = $('#js_url').val();
+    formatWebsiteString(input);
+  });
 };
-function validateUrl() {
-  console.log(`validateUrl ran`);
+function formatWebsiteString(input) {
+  let filter = input.includes('http://');
+  let filterS = input.includes('https://');
+  if (filter == true || filterS == true) {
+    createPageInsightsUrl(`url=${input}`);
+    createSnapshotUrl(`url=${input}`);
+  } else {
+    createPageInsightsUrl(`url=http://${input}`);
+    createSnapshotUrl(`url=http://${input}`);
+  }
 };
 // 01 - page insights api
-function createPageInsightsUrl() {
-  console.log(`createPageInsightsUrl ran`);
+function createPageInsightsUrl(uri) {
+  const mobile = '&strategy=mobile&'
+  const desktop = '&strategy=desktop&'
+  const baseUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?'
+  const key = 'key=AIzaSyDL2WF56Nm-A0CcDcQ0BGGmULH8XPu9wjw'
+  const option = {
+    "Accept": "application/json",
+  };
+  const pageMobile = baseUrl + uri + mobile + key;
+  const pageDesktop = baseUrl + uri + desktop + key;
+  getPageInsightsDesktop(pageDesktop, option);
+  getPageInsightsMobile(pageMobile, option);
 };
-function getPageInsights() {
+function getPageInsightsDesktop(url, option) {
+  
   console.log(`getPageInsight ran`);
 };
+function getPageInsightsMobile(url, option) {
+  
+  console.log(`getPageInsight ran`);
+};
+
 function createPageInsightsElements() {
   console.log(`createPageInsightsElements ran`);
 };
 // 02 - snapshot api
-function createSnapshotUrl() {
-  console.log(`createSnapshotUrl ran`);
+function createSnapshotUrl(uri) {
+  console.log(`createSnapshotUrl(${uri}) ran`);
 };
 function getSnapshot() {
   console.log(`getSnapshot ran`);
