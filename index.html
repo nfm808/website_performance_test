@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Website Performance Test</title>
   <meta name="description" content="Test your website performance for seo, speed, and load.">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <nav>
@@ -15,13 +16,24 @@
     </ul>
   </nav>
   <section id="js_website_test" aria-live="polite">
-    <h1>Test Your Website</h1>
-    <form id="website_entry" action="get">
+    <h1 id="js_h1">Test Your Website</h1>
+    <form id="website_form" action="get">
       <input type="text" name="url" id="js_url" placeholder="https://luxurysandbox.com" value="" />
       <button type="submit">Test</button>
     </form>
+    <section id="results">
+      <h1 id="js_results_h1">Results</h1>
+
+    </section>
+    <div id="load">
+      <img src="assets/img/Orbit-256px.gif" alt="loading gif" />
+      <h1>As page load times go from:</h1>
+      <h2 id="load_text">1s to <span id="js_seconds">3</span>s the probability of losing users goes up by <span id="js_percent">30</span>%.</h2>
+      <p>Source: Google/SOASTA Research, 2017</p>
+    </div>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="script.js"></script>
+  <script type="text/javascript" src="data.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
