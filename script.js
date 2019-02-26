@@ -8,12 +8,19 @@
 // 05 - Booking Button
 // 06 - Call Listeners For Rendered Elements
 // 07 - Animations
+// 08 - Load Page
 
 // 00 - website test form
 function handleWebsiteForm() {
-  $('#website_entry').submit(function(e) {
+  $('#website_form').submit(function(e) {
     e.preventDefault();
     let input = $('#js_url').val();
+    toggleDisplayById('website_form');
+    fadeElementById('js_h1', 'fast');
+    changeText('js_h1', 'Testing');
+    fadeElementById('js_h1');
+    changeSpan();
+    fadeElementById('load');
     formatWebsiteString(input);
   });
 };
@@ -50,7 +57,9 @@ function getPageInsightsDesktop(pageDesktop, option) {
     }
     throw new Error (response.statusText);
   })
-  .then(desktopJson => createElements(desktopJson.lighthouseResult))
+  .then(desktopJson => {
+    sortElements(desktopJson.lighthouseResult);
+  })
   .catch(err => {
     console.log(`error: ${err.message}`);
   });
@@ -63,24 +72,37 @@ function getPageInsightsMobile(pageMobile, option) {
     }
     throw new Error (response.statusText);
   })
-  .then(mobileJson => createElements(mobileJson.lighthouseResult))
+  .then(mobileJson => sortElements(mobileJson.lighthouseResult))
   .catch(err => {
     console.log(`error: ${err.message}`);
   });
 };
 // 02 - snapshot 
 function createSnapshotUrl(uri) {
-  const snapshot = `https://image.thum.io/get/${uri}`
-  createElements(snapshot);
+  const snapshot = `https://image.thum.io/get/${uri}`;
+  sortElements(snapshot);
 };
 // 03 - display elements
-function createElements(desktopJson, mobileJson, snapshot) {
-  console.log(desktopJson);
-  console.log(mobileJson);
-  console.log(snapshot);
+function sortElements(data) { 
+  if (data[0] === 'h' ) {
+    DATA.siteImg = data;
+  } else if ( data.configSettings.emulatedFormFactor == 'mobile') {
+    DATA.mobile = data;
+  } else if ( data.configSettings.emulatedFormFactor == 'desktop') {
+    DATA.desktop = data;
+  } 
+  if ( Object.keys(DATA).length == 3 ) {
+    displayElements();
+  }
 };
+function changeText(id, str) {
+  $(`#${id}`).text(`${str}`);
+}
 function displayElements() {
-  console.log(`displayElements ran`);
+  
+  console.log(DATA);
+  fadeElementById('js_h1', 'fast');
+  fadeElementById('load');
 };
 // 04 - contact form
 function createContactForm() {
@@ -101,7 +123,42 @@ function handleResultsPage() {
   console.log(`handleResultsPage ran`);
 };
 // 07 - animations
+function fadeElementById(id, duration, ease) {
+  let defaultSpeed = "slow, ";
+  let defaultEase = "linear";
+  if (duration == undefined) {
+    return $(`#${id}`).fadeToggle(defaultSpeed, ease);
+  } else if (ease == undefined) {
+    return $(`#${id}`).fadeToggle(duration, defaultEase);
+  } else if (duration == undefined && ease == undefined) {
+    return $(`#${id}`).fadeToggle(defaultSpeed, defaultEase);
+  } else {
+    return $(`#${id}`).fadeToggle(duration, ease);
+  };
+};
+function toggleDisplayById(id) {
+  $(`#${id}`).toggle();
+};
+// Load Page
+function changeSpan() {
+  setTimeout(() => {
+    fadeElementById('js_seconds');
+    fadeElementById('js_percent');
+    changeText('js_seconds','5');
+    changeText('js_percent','90');
+    fadeElementById('js_seconds');
+    fadeElementById('js_percent');
+  }, 4000)
+  setTimeout(() => {
+    fadeElementById('js_seconds');
+    fadeElementById('js_percent');
+    changeText('js_seconds','10');
+    changeText('js_percent','123');
+    fadeElementById('js_seconds');
+    fadeElementById('js_percent');
+  }, 9000)
 
+}
 // 99 - on page load calls
 function handleOnPageLoad() {
   handleWebsiteForm();
@@ -117,3 +174,4 @@ $(handleOnPageLoad());
 // 05 - Booking Button
 // 06 - Call Listeners For Rendered Elements
 // 07 - Animations
+// 08 - Load Page
