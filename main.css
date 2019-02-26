@@ -9,3 +9,9 @@ body {
 img {
   width: 500px;
 }
+#load {
+  display: none;
+}
+#results {
+  display: none;
+}
