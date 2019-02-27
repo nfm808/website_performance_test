@@ -103,17 +103,21 @@ function displayTestResultsElements() {
   let mobileTime = Math.floor(DATA.mobile.timing.total) * .001;
   let desktopTime = Math.floor(DATA.desktop.timing.total) * .001;
   let screenshot = `<img src="${DATA.siteImg}" alt="tested website screenshot" />`;
+  let desktopTimelineScreen = createTimelineThumbnails(DATA.desktop.audits["screenshot-thumbnails"].details.items.map(value => value.data));
   let mobileOverview = `<div id="overview">
+                          <h1>Overall Performance</h1>
+                          <h1>${DATA.desktop.finalUrl}</h1>
                           <div id="mobile_results">
-                            <h1>Overall Performance</h1>
                             <h2>Mobile</h2>
                             <h3 id="js_mobile_score">${determineScoreDisplay(DATA.mobile.categories.performance.score)}</h3>
                             <p id="js_loadtime">${mobileTime}s</p>
+                            <button class="detail_button" id="js_mobile_button" type="button">Details</button>
                           </div>
                           <div id="desktop_results">
                             <h2>Desktop</h2>
                             <h3 id="js_desktop_score">${determineScoreDisplay(DATA.desktop.categories.performance.score)}</h3>
                             <p id="js_loadtime">${desktopTime}s</p>
+                            <button class="detail_button" id="js_desktop_button" type="button">Details</button>
                           </div>
                           <button id="js_book_button">Book Free Consult</button>
                           <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
@@ -121,9 +125,26 @@ function displayTestResultsElements() {
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
   $('#results').prepend(screenshot);
+  $('#results').append(mobileTimelineScreen);
   $('#results').append(mobileOverview);
   fadeElementById('results');
 };
+function displayMobileDetailResults() {
+  let mobileTimelineScreen = createTimelineThumbnails(DATA.mobile.audits["screenshot-thumbnails"].details.items.map(value => value.data));
+
+};
+function createTimelineThumbnails(array) {
+  console.log(array);
+  let src = 0;
+  $('#results').append(`<div class="render_thumbnails"></div>`)
+  for (let i = 0; i < array.length; i++) {
+    src = array[i]
+    console.log(src);
+    $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
+  };
+};
+
+
 function determineScoreDisplay(x) {
   if (x < .50) {
     return 'Low'
