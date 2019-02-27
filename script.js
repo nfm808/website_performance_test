@@ -99,10 +99,38 @@ function changeText(id, str) {
   $(`#${id}`).text(`${str}`);
 }
 function displayElements() {
-  
   console.log(DATA);
+  let mobileTime = Math.floor(DATA.mobile.timing.total, -1) * .001;
+  let desktopTime = Math.floor(DATA.desktop.timing.total, -1) * .001;
+  let screenshot = `<img src="${DATA.siteImg}" alt="tested website screenshot" />`;
+  let mobileOverview = `<div id="overview">
+                          <div id="mobile_results">
+                            <h2>Mobile</h2>
+                            <h3 id="js_mobile_score">${determineScoreDisplay(DATA.mobile.categories.performance.score)}</h3>
+                            <p id="js_loadtime">${mobileTime}</p>
+                          </div>
+                          <div id="desktop_results">
+                            <h2>Desktop</h2>
+                            <h3 id="js_desktop_score">${determineScoreDisplay(DATA.desktop.categories.performance.score)}</h3>
+                            <p id="js_loadtime">${desktopTime}</p>
+                          </div>
+                        </div>`
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
+  $('#results').prepend(screenshot);
+  $('#results').append(mobileOverview);
+  fadeElementById('results');
+};
+function determineScoreDisplay(x) {
+  if (x < .50) {
+    return 'Slow'
+  }
+  if(x >= .50 && x < .90 ) {
+    return 'Average'
+  }
+  if (x >= .9) {
+    return 'Fast'
+  }
 };
 // 04 - contact form
 function createContactForm() {
@@ -139,7 +167,7 @@ function fadeElementById(id, duration, ease) {
 function toggleDisplayById(id) {
   $(`#${id}`).toggle();
 };
-// Load Page
+// load Page
 function changeSpan() {
   setTimeout(() => {
     fadeElementById('js_seconds');
