@@ -12,7 +12,7 @@
 
 // 00 - website test form
 function handleWebsiteForm() {
-  $('#website_form').submit(function(e) {
+  $('#website_form').submit(function (e) {
     e.preventDefault();
     let input = $('#js_url').val();
     toggleDisplayById('website_form');
@@ -51,31 +51,31 @@ function createPageInsightsUrl(uri) {
 };
 function getPageInsightsDesktop(pageDesktop, option) {
   fetch(pageDesktop, option)
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw new Error (response.statusText);
-  })
-  .then(desktopJson => {
-    sortElements(desktopJson.lighthouseResult);
-  })
-  .catch(err => {
-    console.log(`error: ${err.message}`);
-  });
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(desktopJson => {
+      sortElements(desktopJson.lighthouseResult);
+    })
+    .catch(err => {
+      console.log(`error: ${err.message}`);
+    });
 };
 function getPageInsightsMobile(pageMobile, option) {
   fetch(pageMobile, option)
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw new Error (response.statusText);
-  })
-  .then(mobileJson => sortElements(mobileJson.lighthouseResult))
-  .catch(err => {
-    console.log(`error: ${err.message}`);
-  });
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(mobileJson => sortElements(mobileJson.lighthouseResult))
+    .catch(err => {
+      console.log(`error: ${err.message}`);
+    });
 };
 // 02 - snapshot 
 function createSnapshotUrl(uri) {
@@ -83,37 +83,40 @@ function createSnapshotUrl(uri) {
   sortElements(snapshot);
 };
 // 03 - display elements
-function sortElements(data) { 
-  if (data[0] === 'h' ) {
+function sortElements(data) {
+  if (data[0] === 'h') {
     DATA.siteImg = data;
-  } else if ( data.configSettings.emulatedFormFactor == 'mobile') {
+  } else if (data.configSettings.emulatedFormFactor == 'mobile') {
     DATA.mobile = data;
-  } else if ( data.configSettings.emulatedFormFactor == 'desktop') {
+  } else if (data.configSettings.emulatedFormFactor == 'desktop') {
     DATA.desktop = data;
-  } 
-  if ( Object.keys(DATA).length == 3 ) {
-    displayElements();
+  }
+  if (Object.keys(DATA).length == 3) {
+    displayTestResultsElements();
   }
 };
 function changeText(id, str) {
   $(`#${id}`).text(`${str}`);
 }
-function displayElements() {
+function displayTestResultsElements() {
   console.log(DATA);
-  let mobileTime = Math.floor(DATA.mobile.timing.total, -1) * .001;
-  let desktopTime = Math.floor(DATA.desktop.timing.total, -1) * .001;
+  let mobileTime = Math.floor(DATA.mobile.timing.total) * .001;
+  let desktopTime = Math.floor(DATA.desktop.timing.total) * .001;
   let screenshot = `<img src="${DATA.siteImg}" alt="tested website screenshot" />`;
   let mobileOverview = `<div id="overview">
                           <div id="mobile_results">
+                            <h1>Overall Performance</h1>
                             <h2>Mobile</h2>
                             <h3 id="js_mobile_score">${determineScoreDisplay(DATA.mobile.categories.performance.score)}</h3>
-                            <p id="js_loadtime">${mobileTime}</p>
+                            <p id="js_loadtime">${mobileTime}s</p>
                           </div>
                           <div id="desktop_results">
                             <h2>Desktop</h2>
                             <h3 id="js_desktop_score">${determineScoreDisplay(DATA.desktop.categories.performance.score)}</h3>
-                            <p id="js_loadtime">${desktopTime}</p>
+                            <p id="js_loadtime">${desktopTime}s</p>
                           </div>
+                          <button id="js_book_button">Book Free Consult</button>
+                          <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
                         </div>`
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
@@ -123,13 +126,13 @@ function displayElements() {
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
-    return 'Slow'
+    return 'Low'
   }
-  if(x >= .50 && x < .90 ) {
+  if (x >= .50 && x < .90) {
     return 'Average'
   }
   if (x >= .9) {
-    return 'Fast'
+    return 'Good'
   }
 };
 // 04 - contact form
@@ -172,16 +175,16 @@ function changeSpan() {
   setTimeout(() => {
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
-    changeText('js_seconds','5');
-    changeText('js_percent','90');
+    changeText('js_seconds', '5');
+    changeText('js_percent', '90');
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
   }, 4000)
   setTimeout(() => {
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
-    changeText('js_seconds','10');
-    changeText('js_percent','123');
+    changeText('js_seconds', '10');
+    changeText('js_percent', '123');
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
   }, 9000)
