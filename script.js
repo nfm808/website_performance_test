@@ -118,9 +118,12 @@ function displayTestResultsElements() {
                       <p id="js_loadtime">${desktopTime}s</p>
                       <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
                     </div>
-                    <h2>Schedule a Free Breakdown of your score review today and learn how to improve your site!</h2>
-                    <button id="js_book_button">Book Free Consult</button>
-                    <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
+                    <div class="render_timeline"></div>
+                    <div id="book">
+                      <h2>Schedule a Free Breakdown of your score review today and learn how to improve your site!</h2>
+                      <button id="js_book_button">Book Free Consult</button>
+                      <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
+                    </div>
                   </div>`
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
@@ -133,34 +136,41 @@ function displayTestResultsElements() {
 function handleMobileDetail() {
   $('#js_mobile_button').click(function(e) {
     $('.render_thumbnails').remove();
-    displayMobileDetailResults();
+    displayMobileRender();
   });
 };
-function displayMobileDetailResults() {
-  let mobileTimelineScreen = DATA.mobile.audits["screenshot-thumbnails"].details.items.map(value => value.data);
-  createTimelineThumbnails(mobileTimelineScreen);
+function displayMobileRender() {
+  let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
+  let src = [];
+  let time = [];
+  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
+  $('.render_thumbnails').prepend(`<h2>Here is what your users are seeing on load</h2>`);
+  for (let i = 0; i < info.length; i++) {
+    src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
+    time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
+    $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
+    $('.render_thumbnails').append(`<p>${time}s</p>`);
+  };
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
     $('.render_thumbnails').remove();
-    displayDesktopDetailResults();
+    displayDesktopRender();
   });
 };
-function displayDesktopDetailResults() {
-  let desktopTimelineScreen = DATA.desktop.audits["screenshot-thumbnails"].details.items.map(value => value.data);
-  createTimelineThumbnails(desktopTimelineScreen);
-};
-function createTimelineThumbnails(array) {
-  let src = 0;
-  $('#results').append(`<div class="render_thumbnails"></div>`)
-  for (let i = 0; i < array.length; i++) {
-    src = array[i]
-    console.log(src);
+function displayDesktopRender() {
+  let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
+  let src = DATA.desktop.audits["screenshot-thumbnails"].details.items[0].data;
+  let time = DATA.desktop.audits["screenshot-thumbnails"].details.items[0].timing * .001;
+  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
+  $('.render_thumbnails').prepend(`<h2>Here is what your users are seeing on load</h2>`);
+  for (let i = 0; i < info.length; i++) {
+    src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
+    time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
+    $('.render_thumbnails').append(`<p>${time}s</p>`);
   };
 };
-
-
 function determineScoreDisplay(x) {
   if (x < .50) {
     return 'Low'
