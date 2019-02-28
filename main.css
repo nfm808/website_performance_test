@@ -15,3 +15,6 @@ img {
 #results {
   display: none;
 }
+.render_thumbnails img {
+  width: 100px;
+}
