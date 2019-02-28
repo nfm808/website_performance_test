@@ -121,7 +121,7 @@ function displayTestResultsElements() {
                     <div class="render_timeline"></div>
                     <div id="book">
                       <h2>Schedule a Free Breakdown of your score review today and learn how to improve your site!</h2>
-                      <button id="js_book_button">Book Free Consult</button>
+                      <button type="button" id="js_book_button">Book Free Consult</button>
                       <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
                     </div>
                   </div>`
@@ -132,6 +132,7 @@ function displayTestResultsElements() {
   fadeElementById('results');
   handleMobileDetail();
   handleDesktopDetail();
+  handleBookButton();
 };
 function handleMobileDetail() {
   $('#js_mobile_button').click(function(e) {
@@ -183,6 +184,11 @@ function determineScoreDisplay(x) {
   }
 };
 // 04 - contact form
+function handleBookButton(url) {
+  $('#js_book_button').click(function() {
+    console.log(`booking button clicked: url: ${DATA.desktop.requestedUrl}`);
+  });
+};
 function createContactForm() {
   console.log(`createContactForm ran`);
 };
@@ -191,10 +197,6 @@ function validateEmail() {
 };
 function handleContactForm() {
   console.log(`handleContactForm ran`);
-};
-// 05 - booking button
-function handleBookButton() {
-  console.log(`handleBookButton ran`);
 };
 // 06 - call listeners
 function handleResultsPage() {
