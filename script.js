@@ -9,6 +9,7 @@
 // 06 - Call Listeners For Rendered Elements
 // 07 - Animations
 // 08 - Load Page
+// 09 - Google Charts
 
 // 00 - website test form
 function handleWebsiteForm() {
@@ -105,15 +106,13 @@ function displayTestResultsElements() {
                     <h1>${DATA.desktop.finalUrl}</h1>
                     <div id="mobile_results">
                       <h2>Mobile</h2>
-                      <h3 id="js_mobile_score">${determineScoreDisplay(DATA.mobile.categories.performance.score)}</h3>
-                      <div class="chart_div_mobile"></div>
+                      <div class="chart_div" id="chart_div_mobile"></div>
                       <p id="js_loadtime">${mobileTime}s</p>
                       <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
                     </div>
                     <div id="desktop_results">
                       <h2>Desktop</h2>
-                      <h3 id="js_desktop_score">${determineScoreDisplay(DATA.desktop.categories.performance.score)}</h3>
-                      <div class="chart_div_desktop"></div>
+                      <div class="chart_div" id="chart_div_desktop"></div>
                       <p id="js_loadtime">${desktopTime}s</p>
                       <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
                     </div>
@@ -121,7 +120,8 @@ function displayTestResultsElements() {
                     <div id="book">
                       <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free Consult</button>
-                      <p>source: Google PageSpeed Insights</p>
+                      <p>Source: Google PageSpeed Insights</p>
+                      <p>Chart Visualization: Google Charts</p>
                       <p>Click <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Here</a> for your detailed report.</p>
                     </div>
                   </div>`
@@ -130,6 +130,7 @@ function displayTestResultsElements() {
   $('#results').prepend(screenshot);
   $('#results').append(overview);
   fadeElementById('results');
+  drawChart();
   handleMobileDetail();
   handleDesktopDetail();
   handleBookButton();
@@ -325,10 +326,56 @@ function handleLoadScreen() {
 function changeText(id, str) {
   $(`#${id}`).text(`${str}`);
 };
+// 09 - Google Charts
+function loadChart() {
+  google.charts.load('current', {'packages':['gauge']});
+  google.charts.setOnLoadCallback(drawChart());
+};
+function drawChart() {
 
+  var dataM = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Score', 0]
+  ]);
+  var dataD = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Score', 0]
+  ]);
+
+
+  var options = {
+    width: 400, height: 120,
+    redFrom: 0, redTo: 50,
+    yellowFrom: 50, yellowTo: 90,
+    greenFrom: 90, greenTo: 100,
+    minorTicks: 5
+  };
+  
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div_mobile'));
+  var chartD = new google.visualization.Gauge(document.getElementById('chart_div_desktop'));
+
+  chart.draw(dataM, options);
+  chartD.draw(dataD, options);
+
+  setInterval(function() {
+    dataM = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      [`${determineScoreDisplay(DATA.mobile.categories.performance.score)}`, 0]
+    ]);
+    dataD = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      [`${determineScoreDisplay(DATA.desktop.categories.performance.score)}`, 0]
+    ]);
+    dataM.setValue(0, 1, 0 + (DATA.mobile.categories.performance.score * 100));
+    dataD.setValue(0, 1, 0 + (DATA.desktop.categories.performance.score * 100))
+    chart.draw(dataM, options);
+    chartD.draw(dataD, options);
+  }, 3000);
+};
 // 99 - on page load calls
 function handleOnPageLoad() {
   handleWebsiteForm();
+  loadChart();
 };
 $(handleOnPageLoad());
 
@@ -342,3 +389,4 @@ $(handleOnPageLoad());
 // 06 - Call Listeners For Rendered Elements
 // 07 - Animations
 // 08 - Load Page
+// 09 - Google Charts
