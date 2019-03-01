@@ -204,9 +204,11 @@ function createContactForm() {
                   <label id="message-label" for="message">Let's Talk</label>
                   <textarea id="message" placeholder="Your Message" aria-placeholder="Your Message" required aria-required="true"></textarea>
                   <button id="submit" type="submit">Submit</button>
-                </form>`
+                </form>
+                <button type="button" id="js_results_button">Results</button>`
   $('#js_contact').prepend(contact);
   fadeElementById('js_contact');
+  handleResultsButton();
   handleSubmitForm();
 };
 function validateEmail(email) {
@@ -270,6 +272,12 @@ function handleSubmitForm() {
       console.log(`handleSubmitForm() was a fail`)
     };
     
+  });
+};
+function handleResultsButton() {
+  $('#js_results_button').click(function() {
+    fadeElementById('js_contact');
+    fadeElementById('results');
   });
 };
 // 06 - call listeners
