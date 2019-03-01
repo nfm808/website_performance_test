@@ -118,11 +118,12 @@ function displayTestResultsElements() {
                       <p id="js_loadtime">${desktopTime}s</p>
                       <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
                     </div>
-                    <div class="render_timeline"></div>
+                    <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
-                      <h2>Schedule a Free Breakdown of your score review today and learn how to improve your site!</h2>
+                      <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free Consult</button>
-                      <p>source: https://developers.google.com/speed/pagespeed/insights/</p>
+                      <p>source: Google PageSpeed Insights</p>
+                      <p>Click <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Here</a> for your detailed report.</p>
                     </div>
                   </div>`
   fadeElementById('js_h1', 'fast');
@@ -152,6 +153,7 @@ function displayMobileRender() {
     $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
     $('.render_thumbnails').append(`<p>${time}s</p>`);
   };
+  slideById('render_timeline');
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
@@ -171,6 +173,7 @@ function displayDesktopRender() {
     $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
     $('.render_thumbnails').append(`<p>${time}s</p>`);
   };
+  slideById('render_timeline');
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
@@ -184,19 +187,90 @@ function determineScoreDisplay(x) {
   }
 };
 // 04 - contact form
-function handleBookButton(url) {
+function handleBookButton() {
   $('#js_book_button').click(function() {
-    console.log(`booking button clicked: url: ${DATA.desktop.requestedUrl}`);
+    fadeElementById('results');
+    createContactForm();
   });
 };
 function createContactForm() {
   console.log(`createContactForm ran`);
+  let contact = `<form action="/" method="post" class="contact-form" id="contact-form">
+                  <input id="url" value="${DATA.desktop.requestedUrl}" readonly/>
+                  <label id="name-label" for="name">Name</label>
+                  <input id="name" type="text" placeholder="Your Name" aria-placeholder="Your Name" required aria-required="true">
+                  <label id="email-label" for="email">Email</label>
+                  <input id="email" type="text" placeholder="Your Email" aria-placeholder="Your Email" required aria-required="true">
+                  <label id="message-label" for="message">Let's Talk</label>
+                  <textarea id="message" placeholder="Your Message" aria-placeholder="Your Message" required aria-required="true"></textarea>
+                  <button id="submit" type="submit">Submit</button>
+                </form>`
+  $('#js_contact').prepend(contact);
+  fadeElementById('js_contact');
+  handleSubmitForm();
 };
-function validateEmail() {
+function validateEmail(email) {
   console.log(`validateEmail ran`);
+  let re = /\S+@\S+\.\S+/;
+  return re.test(String(email).toLowerCase());
 };
-function handleContactForm() {
-  console.log(`handleContactForm ran`);
+//validate form submission
+function validateForm() {
+  let name = $('#name').val();
+  let email = $('#email').val();
+  let message = $('#message').val();
+  if (name === "" || name === "Your Name") {
+    $('#name-label').text(`Required`);
+    $('#name-label').css({"color": "red"});
+    $('#name').focus();
+    return false;
+  }
+  if (name !== "" || name !== "Your Name") {
+    $('#name-label').text(`Valid`);
+    $('#name-label').css({"color": "green"});
+  } 
+  if (email == "" || email == "Your Email") {
+    $('#email-label').text(`Valid Email Required`);
+    $('#email-label').css({"color": "red"});
+    $('#email').focus();
+    return false;
+  }
+  if (validateEmail(email) === false) {
+    $('#email-label').text(`Valid Email Required`);
+    $('#email-label').css({"color": "red"});
+    $('#email').focus();
+    return false;
+  }
+  if (validateEmail(email) === true) {
+    $('#email-label').text(`Valid`);
+    $('#email-label').css({"color": "green"});
+  } 
+  if (message === "" || message === "Your Message") {
+    $('#message-label').text(`Required`);
+    $('#message-label').css({"color": "red"});
+    $('#message').focus();
+    return false;
+  }
+  if (message !== "" || message !== "Your Name") {
+    $('#message-label').text(`Valid`);
+    $('#message-label').css({"color": "green"});
+  } 
+  return true;
+};
+function handleSubmitForm() {
+  //submit listener
+  $('#submit').click(function(e) {
+    e.preventDefault();
+    
+    //validate the submit form
+    if (validateForm() === true) {
+      console.log(`handleSubmitForm() was a success`)
+
+    } else {
+      console.log(`handleSubmitForm() was a fail`)
+    };
+    
+  });
 };
 // 06 - call listeners
 function handleResultsPage() {
@@ -218,6 +292,9 @@ function fadeElementById(id, duration, ease) {
 };
 function toggleDisplayById(id) {
   $(`#${id}`).toggle();
+};
+function slideById(id) {
+ $(`#${id}`).slideToggle();
 };
 // load Page
 function changeSpan() {
