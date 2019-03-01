@@ -19,7 +19,7 @@ function handleWebsiteForm() {
     fadeElementById('js_h1', 'fast');
     changeText('js_h1', 'Testing');
     fadeElementById('js_h1');
-    changeSpan();
+    handleLoadScreen();
     fadeElementById('load');
     formatWebsiteString(input);
   });
@@ -95,9 +95,6 @@ function sortElements(data) {
     displayTestResultsElements();
   }
 };
-function changeText(id, str) {
-  $(`#${id}`).text(`${str}`);
-}
 function displayTestResultsElements() {
   console.log(DATA);
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
@@ -228,7 +225,7 @@ function validateForm() {
     return false;
   }
   if (name !== "" || name !== "Your Name") {
-    $('#name-label').text(`Valid`);
+    $('#name-label').text(`Name`);
     $('#name-label').css({"color": "green"});
   } 
   if (email == "" || email == "Your Email") {
@@ -244,7 +241,7 @@ function validateForm() {
     return false;
   }
   if (validateEmail(email) === true) {
-    $('#email-label').text(`Valid`);
+    $('#email-label').text(`Email`);
     $('#email-label').css({"color": "green"});
   } 
   if (message === "" || message === "Your Message") {
@@ -254,7 +251,7 @@ function validateForm() {
     return false;
   }
   if (message !== "" || message !== "Your Name") {
-    $('#message-label').text(`Valid`);
+    $('#message-label').text(`Let's Talk`);
     $('#message-label').css({"color": "green"});
   } 
   return true;
@@ -304,8 +301,8 @@ function toggleDisplayById(id) {
 function slideById(id) {
  $(`#${id}`).slideToggle();
 };
-// load Page
-function changeSpan() {
+// 08 load Page
+function handleLoadScreen() {
   setTimeout(() => {
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
@@ -322,8 +319,11 @@ function changeSpan() {
     fadeElementById('js_seconds');
     fadeElementById('js_percent');
   }, 9000)
+};
+function changeText(id, str) {
+  $(`#${id}`).text(`${str}`);
+};
 
-}
 // 99 - on page load calls
 function handleOnPageLoad() {
   handleWebsiteForm();
