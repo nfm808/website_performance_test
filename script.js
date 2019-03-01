@@ -100,22 +100,23 @@ function displayTestResultsElements() {
   console.log(DATA);
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
   let desktopTime = (Math.round(DATA.desktop.timing.total)) * .001;
-  let screenshot = `<img src="${DATA.siteImg}" alt="tested website screenshot" />`;
   let overview = `<div id="overview">
-                    <h1>Overall Performance</h1>
+                    <img src="${DATA.siteImg}" alt="tested website screenshot" />
                     <h1>${DATA.desktop.finalUrl}</h1>
-                    <div id="mobile_results">
-                      <h2>Mobile</h2>
-                      <div class="chart_div" id="chart_div_mobile"></div>
-                      <p id="js_loadtime">${mobileTime}s</p>
-                      <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
-                    </div>
-                    <div id="desktop_results">
-                      <h2>Desktop</h2>
-                      <div class="chart_div" id="chart_div_desktop"></div>
-                      <p id="js_loadtime">${desktopTime}s</p>
-                      <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
-                    </div>
+                    <section id="results_overview">
+                      <div id="mobile_results">
+                        <h2>Mobile</h2>
+                        <div class="chart_div" id="chart_div_mobile"></div>
+                        <p id="js_loadtime">${mobileTime}s</p>
+                        <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
+                      </div>
+                      <div id="desktop_results">
+                        <h2>Desktop</h2>
+                        <div class="chart_div" id="chart_div_desktop"></div>
+                        <p id="js_loadtime">${desktopTime}s</p>
+                        <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
+                      </div>
+                    </section>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
                       <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
@@ -127,7 +128,6 @@ function displayTestResultsElements() {
                   </div>`
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
-  $('#results').prepend(screenshot);
   $('#results').append(overview);
   fadeElementById('results');
   drawChart();
@@ -137,7 +137,7 @@ function displayTestResultsElements() {
 };
 function handleMobileDetail() {
   $('#js_mobile_button').click(function(e) {
-    $('.render_thumbnails').remove();
+    $('.render_timeline').empty();
     displayMobileRender();
   });
 };
@@ -145,35 +145,33 @@ function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
-  $('.render_thumbnails').prepend(`<h2>Here is what your users are seeing on load</h2>`);
+  $('.render_timeline').append(`<h2>Here is what your users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
-    $('.render_thumbnails').append(`<p>${time}s</p>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
   slideById('render_timeline');
+  $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
-    $('.render_thumbnails').remove();
+    $('.render_timeline').empty();
     displayDesktopRender();
   });
 };
 function displayDesktopRender() {
   let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
-  let src = DATA.desktop.audits["screenshot-thumbnails"].details.items[0].data;
-  let time = DATA.desktop.audits["screenshot-thumbnails"].details.items[0].timing * .001;
-  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
-  $('.render_thumbnails').prepend(`<h2>Here is what your users are seeing on load</h2>`);
+  let src = [];
+  let time = [];
+  $('.render_timeline').append(`<h2>Here is what your users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<img src="data:image/jpeg;base64, ${src}" />`);
-    $('.render_thumbnails').append(`<p>${time}s</p>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
   slideById('render_timeline');
+  $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
@@ -189,6 +187,7 @@ function determineScoreDisplay(x) {
 // 04 - contact form
 function handleBookButton() {
   $('#js_book_button').click(function() {
+    $('#js_contact').empty();
     fadeElementById('results');
     createContactForm();
   });
@@ -208,6 +207,7 @@ function createContactForm() {
                 <button type="button" id="js_results_button">Results</button>`
   $('#js_contact').prepend(contact);
   fadeElementById('js_contact');
+  $("#js_contact").css({"display":"flex","flex-direction":"column"});
   handleResultsButton();
   handleSubmitForm();
 };
@@ -344,7 +344,7 @@ function drawChart() {
 
 
   var options = {
-    width: 400, height: 120,
+    width: 150, height: 120,
     redFrom: 0, redTo: 50,
     yellowFrom: 50, yellowTo: 90,
     greenFrom: 90, greenTo: 100,
