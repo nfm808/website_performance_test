@@ -106,12 +106,14 @@ function displayTestResultsElements() {
                     <div id="mobile_results">
                       <h2>Mobile</h2>
                       <h3 id="js_mobile_score">${determineScoreDisplay(DATA.mobile.categories.performance.score)}</h3>
+                      <div class="chart_div_mobile"></div>
                       <p id="js_loadtime">${mobileTime}s</p>
                       <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
                     </div>
                     <div id="desktop_results">
                       <h2>Desktop</h2>
                       <h3 id="js_desktop_score">${determineScoreDisplay(DATA.desktop.categories.performance.score)}</h3>
+                      <div class="chart_div_desktop"></div>
                       <p id="js_loadtime">${desktopTime}s</p>
                       <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
                     </div>
