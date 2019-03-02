@@ -100,7 +100,9 @@ function displayTestResultsElements() {
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
   let desktopTime = (Math.round(DATA.desktop.timing.total)) * .001;
   let overview = `<div id="overview">
-                    <img src="${DATA.siteImg}" alt="tested website screenshot" />
+                    <div class="img_container">
+                      <img src="${DATA.siteImg}" alt="tested website screenshot" />
+                    </div>
                     <h1>${DATA.desktop.finalUrl}</h1>
                     <section id="score_overview">
                       <div id="mobile_results">
@@ -161,7 +163,7 @@ function displayMobileRender() {
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
+  // $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
@@ -189,7 +191,7 @@ function displayDesktopRender() {
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
+  // $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
