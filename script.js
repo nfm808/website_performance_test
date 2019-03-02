@@ -137,21 +137,24 @@ function displayTestResultsElements() {
 };
 function handleMobileDetail() {
   $('#js_mobile_button').click(function(e) {
+    let style = $('#render_timeline').attr('style');
+    console.log(style);
     $('.render_timeline').empty();
-    displayMobileRender();
+    displayMobileRender();  
   });
 };
 function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h2>Here is what your mobile users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
   slideById('render_timeline');
+  $(".render_thumbnails").addAttr("")
   $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function handleDesktopDetail() {
