@@ -17,11 +17,10 @@ function handleWebsiteForm() {
     e.preventDefault();
     let input = $('#js_url').val();
     toggleDisplayById('website_form');
-    fadeElementById('js_h1', 'fast');
-    changeText('js_h1', 'Testing');
-    fadeElementById('js_h1');
+    fadeElementById('js_website_test', 'fast');
     handleLoadScreen();
     fadeElementById('load');
+    $("#load").css({"display":"flex"});
     formatWebsiteString(input);
   });
 };
@@ -103,7 +102,7 @@ function displayTestResultsElements() {
   let overview = `<div id="overview">
                     <img src="${DATA.siteImg}" alt="tested website screenshot" />
                     <h1>${DATA.desktop.finalUrl}</h1>
-                    <section id="results_overview">
+                    <section id="score_overview">
                       <div id="mobile_results">
                         <h2>Mobile</h2>
                         <div class="chart_div" id="chart_div_mobile"></div>
@@ -130,6 +129,7 @@ function displayTestResultsElements() {
   fadeElementById('load');
   $('#results').append(overview);
   fadeElementById('results');
+  $("#results").css({"display":"flex"});
   drawChart();
   handleMobileDetail();
   handleDesktopDetail();

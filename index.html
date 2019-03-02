@@ -17,23 +17,23 @@
       <li><a href="index.html">Reset</a></li>
     </ul>
   </nav>
-  <section id="js_website_test" aria-live="polite">
+  <section id="js_website_test" aria-live="polite" >
     <h1>Website Performance Audit</h1>
     <p id="js_h1">Enter your web address to test your website's performance.</p>
     <form id="website_form" action="get">
       <input type="text" name="url" id="js_url" placeholder="https://luxurysandbox.com" value="" />
       <button type="submit">Test</button>
     </form>
-    <section id="results" aria-live="polite">
-    </section>
-    <section id="js_contact" aria-live="polite"></section>
-    <div id="load">
-      <img src="assets/img/Orbit-256px.gif" alt="loading gif" />
-      <h1>As page load times go from:</h1>
-      <h2 id="load_text">1s to <span id="js_seconds">3</span>s the probability of losing users goes up by <span id="js_percent">30</span>%.</h2>
-      <p>Source: Google/SOASTA Research, 2017</p>
-    </div>
   </section>
+  <section id="results" aria-live="polite">
+  </section>
+  <section id="js_contact" aria-live="polite"></section>
+  <div id="load">
+    <img src="assets/img/Orbit-256px.gif" alt="loading gif" />
+    <h2>As page load times go from:</h2>
+    <h2 id="load_text">1s to <span class="js_span" id="js_seconds">3</span>s the probability of losing users goes up by <span class="js_span" id="js_percent">30</span>%.</h2>
+    <p>Source: Google/SOASTA Research, 2017</p>
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript" src="data.js"></script>

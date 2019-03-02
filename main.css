@@ -5,9 +5,9 @@ html * {
   box-sizing: border-box;
 }
 body {
-  height: 100%;
-  width: 100%;
-  /* overflow: hidden; */
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
   font-family: "Open Sans";
   font-size: 14px;
   line-height: 1.8;
@@ -20,21 +20,66 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-family: "Montserrat";
 }
-
-img {
-  width: 500px;
+nav {
+  width: 100vw;
+  height: auto;
+  position: fixed;
+  z-index: 11111111;
+  left: 0px;
+  top: 0px;
+  background: #041230;
 }
 nav ul {
+  width: 90vw;
   display: flex;
   justify-content: space-around;
+  list-style-type: none;
+}
+#navigation a{
+  color: #fff;
 }
 #js_website_test {
+  width: 90vw;
+  height: 90vh;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
+  padding-right: 5px;
 }
-#results_overview {
+#load {
+  width: 90vw;
+  height: 90Vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+#load img {
+  width: 150px;
+  height: auto;
+}
+.js_span {
+  color: #E3872D;
+}
+#results {
+  width: 80vw;
+  height: 80vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+#score_overview {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -42,12 +87,6 @@ nav ul {
 .thumb_box {
   display: flex;
   flex-direction: column;
-}
-#load {
-  display: none;
-}
-#results {
-  display: none;
 }
 #js_contact {
   display: none;
