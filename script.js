@@ -157,7 +157,7 @@ function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your mobile users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h2>Here is what your <span class="js_span">mobile</span> users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
@@ -185,7 +185,7 @@ function displayDesktopRender() {
   let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your desktop users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h2>Here is what your <span class="js_span">desktop</span> users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
