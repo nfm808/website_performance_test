@@ -141,6 +141,14 @@ function handleMobileDetail() {
     console.log(style);
     $('.render_timeline').empty();
     displayMobileRender();  
+    if (style == undefined || style == 'display: none;') {
+      slideById('render_timeline');
+    } else {
+      fadeElementById('render_timeline', 'fast');
+      $('.render_timeline').empty();
+      displayMobileRender();
+      fadeElementById('render_timeline', 'fast');
+    }
   });
 };
 function displayMobileRender() {
@@ -153,27 +161,34 @@ function displayMobileRender() {
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  slideById('render_timeline');
-  $(".render_thumbnails").addAttr("")
   $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
+    let style = $('#render_timeline').attr('style');
+    console.log(style);
     $('.render_timeline').empty();
-    displayDesktopRender();
+    displayDesktopRender();  
+    if (style == undefined || style == 'display: none;') {
+      slideById('render_timeline');
+    } else {
+      fadeElementById('render_timeline', 'fast');
+      $('.render_timeline').empty();
+      displayDesktopRender();
+      fadeElementById('render_timeline', 'fast');
+    }
   });
 };
 function displayDesktopRender() {
   let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h2>Here is what your desktop users are seeing on load</h2><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  slideById('render_timeline');
   $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function determineScoreDisplay(x) {
