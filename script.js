@@ -205,16 +205,16 @@ function handleBookButton() {
 function createContactForm() {
   console.log(`createContactForm ran`);
   let contact = `<form action="/" method="post" class="contact-form" id="contact-form">
-                  <input id="url" value="${DATA.desktop.requestedUrl}" readonly/>
                   <label id="name-label" for="name">Name</label>
                   <input id="name" type="text" placeholder="Your Name" aria-placeholder="Your Name" required aria-required="true">
                   <label id="email-label" for="email">Email</label>
                   <input id="email" type="text" placeholder="Your Email" aria-placeholder="Your Email" required aria-required="true">
                   <label id="message-label" for="message">Let's Talk</label>
                   <textarea id="message" placeholder="Your Message" aria-placeholder="Your Message" required aria-required="true"></textarea>
+                  <input id="url" value="${DATA.desktop.requestedUrl}" readonly/>
                   <button id="submit" type="submit">Submit</button>
-                </form>
-                <button type="button" id="js_results_button">Results</button>`
+                  <button type="button" id="js_results_button">Results</button>
+                </form>`
   fadeElementById('js_contact', 'slow');
   $('#js_contact').prepend(contact);
   $("#js_contact").css({"display":"flex","flex-direction":"column"});
@@ -238,7 +238,7 @@ function validateForm() {
   }
   if (name !== "" || name !== "Your Name") {
     $('#name-label').text(`Name`);
-    $('#name-label').css({"color": "green"});
+    $('#name-label').css({"color": "#041230"});
   } 
   if (email == "" || email == "Your Email") {
     $('#email-label').text(`Valid Email Required`);
@@ -254,7 +254,7 @@ function validateForm() {
   }
   if (validateEmail(email) === true) {
     $('#email-label').text(`Email`);
-    $('#email-label').css({"color": "green"});
+    $('#email-label').css({"color": "#041230"});
   } 
   if (message === "" || message === "Your Message") {
     $('#message-label').text(`Required`);
@@ -264,7 +264,7 @@ function validateForm() {
   }
   if (message !== "" || message !== "Your Name") {
     $('#message-label').text(`Let's Talk`);
-    $('#message-label').css({"color": "green"});
+    $('#message-label').css({"color": "#041230"});
   } 
   return true;
 };

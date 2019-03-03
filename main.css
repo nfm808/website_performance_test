@@ -153,8 +153,20 @@ nav ul {
 }
 #js_contact {
   display: none;
+  width: 66%;
+  background: #f6f7fd;
 }
 #contact-form {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
+#contact-form * {
+  margin-bottom: 5px;
+}
+#contact-form label {
+  color: #041230;
+  font-weight: 600;
+}
+
