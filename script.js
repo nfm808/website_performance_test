@@ -1,17 +1,14 @@
 'use strict';
 // 99 - Call on Page Load
-// 00 - Website Test Form
-// 01 - Page Insights API
-// 02 - Snapshot API
-// 03 - Display Elements
+// 11 - Website Test Form
+// 02 - API 
+// 03 - Results Page
 // 04 - Contact Form
-// 05 - Booking Button
-// 06 - Call Listeners For Rendered Elements
-// 07 - Animations
-// 08 - Load Page
-// 09 - Google Charts
+// 05 - Animations
+// 06 - Load Page
+// 07 - Google Charts
 
-// 00 - website test form
+// 11 - Website Test Form
 function handleWebsiteForm() {
   $('#website_form').submit(function (e) {
     e.preventDefault();
@@ -35,7 +32,7 @@ function formatWebsiteString(input) {
     createSnapshotUrl(`http://${input}`);
   }
 };
-// 01 - page insights api
+// 02 - API 
 function createPageInsightsUrl(uri) {
   const mobile = '&strategy=mobile&'
   const desktop = '&strategy=desktop&'
@@ -77,12 +74,11 @@ function getPageInsightsMobile(pageMobile, option) {
       console.log(`error: ${err.message}`);
     });
 };
-// 02 - snapshot 
 function createSnapshotUrl(uri) {
   const snapshot = `https://image.thum.io/get/${uri}`;
   sortElements(snapshot);
 };
-// 03 - display elements
+// 03 - Results Page
 function sortElements(data) {
   if (data[0] === 'h') {
     DATA.siteImg = data;
@@ -122,9 +118,11 @@ function displayTestResultsElements() {
                     <div id="book">
                       <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free Consult</button>
-                      <p>Source: Google PageSpeed Insights</p>
-                      <p>Chart Visualization: Google Charts</p>
-                      <p>Click <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Here</a> for your detailed report.</p>
+                      <p id="js_source">Sources</p>
+                      <div id="source">
+                        <p>Test: <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Google PageSpeed Insights</a></p>
+                        <p>Chart Visualization: Google Charts</p>
+                      </div>
                     </div>
                   </div>`
   fadeElementById('js_h1', 'fast');
@@ -136,11 +134,11 @@ function displayTestResultsElements() {
   handleMobileDetail();
   handleDesktopDetail();
   handleBookButton();
+  handleSourceClick();
 };
 function handleMobileDetail() {
   $('#js_mobile_button').click(function(e) {
     let style = $('#render_timeline').attr('style');
-    console.log(style);
     $('.render_timeline').empty();
     displayMobileRender();  
     if (style == undefined || style == 'display: none;') {
@@ -163,7 +161,6 @@ function displayMobileRender() {
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  // $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
 function handleDesktopDetail() {
   $('#js_desktop_button').click(function(e) {
@@ -191,27 +188,20 @@ function displayDesktopRender() {
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
-  // $(".render_thumbnails").css({"display":"flex","flex-direction":"row"});
 };
-function determineScoreDisplay(x) {
-  if (x < .50) {
-    return 'Low'
-  }
-  if (x >= .50 && x < .90) {
-    return 'Average'
-  }
-  if (x >= .9) {
-    return 'Good'
-  }
+function handleSourceClick() {
+  $('#js_source').click(function() {
+    slideById('source');
+  });
 };
-// 04 - contact form
 function handleBookButton() {
   $('#js_book_button').click(function() {
     $('#js_contact').empty();
-    fadeElementById('results');
+    fadeElementById('results', 'fast');
     createContactForm();
   });
 };
+// 04 - contact page
 function createContactForm() {
   console.log(`createContactForm ran`);
   let contact = `<form action="/" method="post" class="contact-form" id="contact-form">
@@ -225,8 +215,8 @@ function createContactForm() {
                   <button id="submit" type="submit">Submit</button>
                 </form>
                 <button type="button" id="js_results_button">Results</button>`
+  fadeElementById('js_contact', 'slow');
   $('#js_contact').prepend(contact);
-  fadeElementById('js_contact');
   $("#js_contact").css({"display":"flex","flex-direction":"column"});
   handleResultsButton();
   handleSubmitForm();
@@ -236,7 +226,6 @@ function validateEmail(email) {
   let re = /\S+@\S+\.\S+/;
   return re.test(String(email).toLowerCase());
 };
-//validate form submission
 function validateForm() {
   let name = $('#name').val();
   let email = $('#email').val();
@@ -280,31 +269,22 @@ function validateForm() {
   return true;
 };
 function handleSubmitForm() {
-  //submit listener
   $('#submit').click(function(e) {
     e.preventDefault();
-    
-    //validate the submit form
     if (validateForm() === true) {
       console.log(`handleSubmitForm() was a success`)
-
     } else {
       console.log(`handleSubmitForm() was a fail`)
     };
-    
   });
 };
 function handleResultsButton() {
   $('#js_results_button').click(function() {
-    fadeElementById('js_contact');
-    fadeElementById('results');
+    fadeElementById('js_contact', 'fast');
+    fadeElementById('results', 'slow');
   });
 };
-// 06 - call listeners
-function handleResultsPage() {
-  console.log(`handleResultsPage ran`);
-};
-// 07 - animations
+// 05 - animations
 function fadeElementById(id, duration, ease) {
   let defaultSpeed = "slow, ";
   let defaultEase = "linear";
@@ -324,7 +304,7 @@ function toggleDisplayById(id) {
 function slideById(id) {
  $(`#${id}`).slideToggle();
 };
-// 08 load Page
+// 06 load Page
 function handleLoadScreen() {
   setTimeout(() => {
     fadeElementById('js_seconds');
@@ -346,7 +326,7 @@ function handleLoadScreen() {
 function changeText(id, str) {
   $(`#${id}`).text(`${str}`);
 };
-// 09 - Google Charts
+// 07 - Google Charts
 function loadChart() {
   google.charts.load('current', {'packages':['gauge']});
   google.charts.setOnLoadCallback(drawChart());
@@ -392,6 +372,17 @@ function drawChart() {
     chartD.draw(dataD, options);
   }, 3000);
 };
+function determineScoreDisplay(x) {
+  if (x < .50) {
+    return 'Low'
+  }
+  if (x >= .50 && x < .90) {
+    return 'Average'
+  }
+  if (x >= .9) {
+    return 'Good'
+  }
+};
 // 99 - on page load calls
 function handleOnPageLoad() {
   handleWebsiteForm();
@@ -400,13 +391,10 @@ function handleOnPageLoad() {
 $(handleOnPageLoad());
 
 // 99 - Call on Page Load
-// 00 - Website Test Form
-// 01 - Page Insights API
-// 02 - Snapshot API
-// 03 - Display Elements
+// 11 - Website Test Form
+// 02 - API 
+// 03 - Results Page
 // 04 - Contact Form
-// 05 - Booking Button
-// 06 - Call Listeners For Rendered Elements
-// 07 - Animations
-// 08 - Load Page
-// 09 - Google Charts
+// 05 - Animations
+// 06 - Load Page
+// 07 - Google Charts
