@@ -58,6 +58,10 @@ nav ul {
   justify-content: center;
   padding-right: 5px;
 }
+#js_website_test h1 {
+  border-bottom: 2px solid #f6f7fd;
+  padding-bottom: 3px;
+}
 #load {
   width: 90vw;
   height: 90Vh;
