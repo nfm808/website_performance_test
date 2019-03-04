@@ -105,15 +105,20 @@ function displayTestResultsElements() {
                         <h2>Mobile</h2>
                         <div class="chart_div" id="chart_div_mobile"></div>
                         <p id="js_loadtime">${mobileTime}s</p>
-                        <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
                       </div>
                       <div id="desktop_results">
                         <h2>Desktop</h2>
                         <div class="chart_div" id="chart_div_desktop"></div>
                         <p id="js_loadtime">${desktopTime}s</p>
-                        <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
                       </div>
                     </section>
+                    <div class="timeline_header" >
+                      <h2>Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
+                      <div class="timeline_button_container">
+                        <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
+                        <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
+                      </div>
+                    </div>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
                       <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
@@ -142,12 +147,16 @@ function handleMobileDetail() {
     $('.render_timeline').empty();
     displayMobileRender();  
     if (style == undefined || style == 'display: none;') {
+      $('.js_device').text('mobile');
       slideById('render_timeline');
     } else {
       fadeElementById('render_timeline', 'fast');
       $('.render_timeline').empty();
       displayMobileRender();
       fadeElementById('render_timeline', 'fast');
+      $('.js_device').fadeToggle();
+      $('.js_device').text('mobile');
+      $('.js_device').fadeToggle();  
     }
   });
 };
@@ -155,7 +164,7 @@ function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your <span class="js_span">mobile</span> users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
@@ -169,12 +178,16 @@ function handleDesktopDetail() {
     $('.render_timeline').empty();
     displayDesktopRender();  
     if (style == undefined || style == 'display: none;') {
+      $('.js_device').text('desktop');
       slideById('render_timeline');
     } else {
       fadeElementById('render_timeline', 'fast');
       $('.render_timeline').empty();
       displayDesktopRender();
       fadeElementById('render_timeline', 'fast');
+      $('.js_device').fadeToggle();
+      $('.js_device').text('desktop');
+      $('.js_device').fadeToggle();  
     }
   });
 };
@@ -182,7 +195,7 @@ function displayDesktopRender() {
   let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h2>Here is what your <span class="js_span">desktop</span> users are seeing on load</h2><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
