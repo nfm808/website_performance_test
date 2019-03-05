@@ -92,7 +92,6 @@ function sortElements(data) {
   }
 };
 function createResultsTemplate() {
-  console.log(DATA);
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
   let desktopTime = (Math.round(DATA.desktop.timing.total)) * .001;
   let overview = `<div id="overview">
@@ -159,7 +158,7 @@ function handleMobileDetailButton() {
       $('.render_timeline').empty();
       displayMobileRender();
       $(".thumb_box p").css("color", "#fff");
-      fadeElementById('render_timeline', 'fast');
+      fadeElementById('render_timeline', 'slow');
       $('.js_device').fadeToggle();
       $('.js_device').text('mobile');
       $('.js_device').fadeToggle();  
@@ -192,7 +191,7 @@ function handleDesktopDetailButton() {
       $('.render_timeline').empty();
       displayDesktopRender();
       $(".thumb_box>p").css("color", "#041230"); 
-      fadeElementById('render_timeline', 'fast');
+      fadeElementById('render_timeline', 'slow');
       $('.js_device').fadeToggle();
       $('.js_device').text('desktop');
       $('.js_device').fadeToggle();  
@@ -224,7 +223,7 @@ function handleBookButton() {
 };
 // 04 - contact page
 function createContactForm() {
-  console.log(`createContactForm ran`);
+  let copy = `<div class="contact_copy"><h2>Fill out and submit the form below to schedule your free consultation for <span class="js_span">${DATA.desktop.requestedUrl}</span>.</h2></div>`;
   let contact = `<form action="/" method="post" class="contact-form" id="contact-form">
                   <label id="name-label" for="name">Name</label>
                   <input id="name" type="text" placeholder="Your Name" aria-placeholder="Your Name" required aria-required="true">
@@ -237,7 +236,8 @@ function createContactForm() {
                   <button type="button" id="js_results_button">Results</button>
                 </form>`
   fadeElementById('js_contact', 'slow');
-  $('#js_contact').prepend(contact);
+  $('#js_contact').prepend(copy);
+  $('#js_contact').append(contact);
   $("#js_contact").css({"display":"flex","flex-direction":"column"});
   handleResultsButton();
   handleSubmitForm();
@@ -292,10 +292,13 @@ function validateForm() {
 function handleSubmitForm() {
   $('#submit').click(function(e) {
     e.preventDefault();
+    $('#js_contact h3').remove();
     if (validateForm() === true) {
       console.log(`handleSubmitForm() was a success`)
+      $('#js_contact').append(`<h3>Thank you and we will be in contact soon.</h3>`)
     } else {
       console.log(`handleSubmitForm() was a fail`)
+      $('#js_contact').append(`<h3>Please check form and try again.</h3>`)
     };
   });
 };

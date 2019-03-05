@@ -7,7 +7,6 @@ html * {
 body {
   min-height: 100vh;
   min-width: 100vw;
-  /* overflow: hidden; */
   font-family: "Open Sans";
   font-size: 14px;
   line-height: 1.8;
@@ -49,8 +48,6 @@ nav ul {
 #js_website_test {
   width: 90vw;
   height: 90vh;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -60,13 +57,13 @@ nav ul {
 }
 #js_website_test h1 {
   border-bottom: 2px solid #f6f7fd;
-  padding-bottom: 3px;
+}
+#js_website_test img {
+  padding-bottom: 10px;
 }
 #load {
   width: 90vw;
   height: 90Vh;
-  margin-left: auto;
-  margin-right: auto;
   display: none;
   align-items: center;
   flex-direction: column;
@@ -83,13 +80,10 @@ nav ul {
 #results {
   width: 90vw;
   height: 80vh;
-  margin-left: auto;
-  margin-right: auto;
   display: none;
-  /* align-items: center; */
   flex-direction: column;
   text-align: center;
-  /* justify-content: center; */
+  padding-right: 10px;
 }
 #overview {
   height: 100%;
@@ -195,7 +189,7 @@ nav ul {
 }
 #js_contact {
   display: none;
-  width: 66%;
+  width: 90vw;
   background: #f6f7fd;
 }
 #contact-form {
@@ -203,6 +197,7 @@ nav ul {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
 }
 #contact-form * {
   margin-bottom: 5px;
@@ -210,5 +205,18 @@ nav ul {
 #contact-form label {
   color: #041230;
   font-weight: 600;
-}
+  border-bottom: 1px solid #E3872D;
 
+}
+.contact_copy {
+  width: 90vw;
+  background: #041230;
+  color: white;
+  text-align: center;
+  padding: 0 5px;
+  font-size: .9rem;
+}
+#js_contact h3 {
+  text-align: center;
+  color: #E3872D;
+}
