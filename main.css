@@ -176,8 +176,7 @@ nav ul {
   margin: 0px auto;
 }
 .chart_div {
-  height: 120px;
-  width: 150px;
+  width: 40%;
   margin: 0px auto;
   display: flex;
   justify-content: center;

@@ -367,7 +367,7 @@ function drawChart() {
 
 
   var options = {
-    width: 150, height: 120,
+    // width: 150, height: 150,
     redFrom: 0, redTo: 50,
     yellowFrom: 50, yellowTo: 90,
     greenFrom: 90, greenTo: 100,
@@ -390,6 +390,7 @@ function drawChart() {
     chart.draw(dataM, options);
     chartD.draw(dataD, options);
   }, 200);
+  
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
