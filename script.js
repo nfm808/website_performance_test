@@ -350,17 +350,16 @@ function changeText(id, str) {
 // 07 - Google Charts
 function loadChart() {
   google.charts.load('current', {'packages':['gauge']});
-  google.charts.setOnLoadCallback(drawChart());
 };
 function drawChart() {
 
   var dataM = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Score', 0]
+    [`${determineScoreDisplay(DATA.mobile.categories.performance.score)}`, 0]
   ]);
   var dataD = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Score', 0]
+    [`${determineScoreDisplay(DATA.desktop.categories.performance.score)}`, 0]
   ]);
 
 
@@ -369,7 +368,11 @@ function drawChart() {
     redFrom: 0, redTo: 50,
     yellowFrom: 50, yellowTo: 90,
     greenFrom: 90, greenTo: 100,
-    minorTicks: 5
+    minorTicks: 5,
+    animation:{
+      duration: 9000,
+      easing: 'inAndOut'
+    }
   };
   
   var chart = new google.visualization.Gauge(document.getElementById('chart_div_mobile'));
@@ -378,20 +381,12 @@ function drawChart() {
   chart.draw(dataM, options);
   chartD.draw(dataD, options);
 
-  setInterval(function() {
-    dataM = google.visualization.arrayToDataTable([
-      ['Label', 'Value'],
-      [`${determineScoreDisplay(DATA.mobile.categories.performance.score)}`, 0]
-    ]);
-    dataD = google.visualization.arrayToDataTable([
-      ['Label', 'Value'],
-      [`${determineScoreDisplay(DATA.desktop.categories.performance.score)}`, 0]
-    ]);
+  setTimeout(function() {
     dataM.setValue(0, 1, 0 + (DATA.mobile.categories.performance.score * 100));
     dataD.setValue(0, 1, 0 + (DATA.desktop.categories.performance.score * 100))
     chart.draw(dataM, options);
     chartD.draw(dataD, options);
-  }, 3000);
+  }, 200);
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
