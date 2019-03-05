@@ -119,12 +119,23 @@ nav ul {
 .render_timeline {
   display: none;
   width: 100%;
+  margin-top: -2px;
 }
 .render_thumbnails {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-top: 10px;
+  overflow-y: hidden;
 }
+.thumb_box {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+/* .thumb_box p {
+  color: #fff;
+} */
 .thumb_box img{
   height: 200px;
   width: 200px;
@@ -171,10 +182,6 @@ nav ul {
   margin: 0px auto;
   display: flex;
   justify-content: center;
-}
-.thumb_box {
-  display: flex;
-  flex-direction: column;
 }
 #book {
   background: #f6f7fd;

@@ -88,10 +88,10 @@ function sortElements(data) {
     DATA.desktop = data;
   }
   if (Object.keys(DATA).length == 3) {
-    displayTestResultsElements();
+    createResultsTemplate();
   }
 };
-function displayTestResultsElements() {
+function createResultsTemplate() {
   console.log(DATA);
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
   let desktopTime = (Math.round(DATA.desktop.timing.total)) * .001;
@@ -130,22 +130,27 @@ function displayTestResultsElements() {
                       </div>
                     </div>
                   </div>`
+  displayResultsPage(overview);
+};
+function displayResultsPage(overview) {
   fadeElementById('js_h1', 'fast');
   fadeElementById('load');
   $('#results').append(overview);
   fadeElementById('results');
   $("#results").css({"display":"flex"});
   drawChart();
-  handleMobileDetail();
-  handleDesktopDetail();
+  handleMobileDetailButton();
+  handleDesktopDetailButton();
   handleBookButton();
   handleSourceClick();
 };
-function handleMobileDetail() {
+function handleMobileDetailButton() {
   $('#js_mobile_button').click(function(e) {
     let style = $('#render_timeline').attr('style');
     $('.render_timeline').empty();
-    displayMobileRender();  
+    displayMobileRender(); 
+    $('.render_timeline').css("background", "#041230");
+    $(".thumb_box p").css("color", "#fff");
     if (style == undefined || style == 'display: none;') {
       $('.js_device').text('mobile');
       slideById('render_timeline');
@@ -153,6 +158,7 @@ function handleMobileDetail() {
       fadeElementById('render_timeline', 'fast');
       $('.render_timeline').empty();
       displayMobileRender();
+      $(".thumb_box p").css("color", "#fff");
       fadeElementById('render_timeline', 'fast');
       $('.js_device').fadeToggle();
       $('.js_device').text('mobile');
@@ -171,12 +177,13 @@ function displayMobileRender() {
     $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
 };
-function handleDesktopDetail() {
+function handleDesktopDetailButton() {
   $('#js_desktop_button').click(function(e) {
     let style = $('#render_timeline').attr('style');
-    console.log(style);
     $('.render_timeline').empty();
-    displayDesktopRender();  
+    $('.render_timeline').css("background", "#fff");
+    displayDesktopRender(); 
+    $(".thumb_box>p").css("color", "#041230"); 
     if (style == undefined || style == 'display: none;') {
       $('.js_device').text('desktop');
       slideById('render_timeline');
@@ -184,6 +191,7 @@ function handleDesktopDetail() {
       fadeElementById('render_timeline', 'fast');
       $('.render_timeline').empty();
       displayDesktopRender();
+      $(".thumb_box>p").css("color", "#041230"); 
       fadeElementById('render_timeline', 'fast');
       $('.js_device').fadeToggle();
       $('.js_device').text('desktop');
