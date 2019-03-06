@@ -79,6 +79,7 @@ nav a {
 }
 #js_website_test img {
   padding-bottom: 10px;
+  height: 80px;
 }
 #website_form {
   display: flex;
@@ -268,6 +269,9 @@ nav a {
   }
   #js_website_test {
     margin-top: 12vh;
+  }
+  #js_website_test img {
+    height: 120px;
   }
   #load {
     margin-top: 15vh;
