@@ -8,8 +8,8 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   font-family: "Open Sans";
-  font-size: 14px;
-  line-height: 1.8;
+  /* font-size: 14px; */
+  /* line-height: 1.8; */
   letter-spacing: 0.5px;
   word-wrap: break-word;
   font-weight: 400;
@@ -21,7 +21,7 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  line-height: 1;
+  line-height: inherit;
   font-family: "Montserrat";
 }
 button {
@@ -30,7 +30,7 @@ button {
   background-color: #E3872D;
   font-weight: 600;
   font-family: "Montserrat";
-  padding: 12px 35px;
+  padding: 12px 22px;
   border-radius: 3px;
   transition: .6s;
 }
@@ -252,9 +252,9 @@ nav a {
 }
 
 @media screen and (min-width: 750px) {
-  body {
+  /* body {
     font-size: 1.8rem;
-  }
+  } */
   input {
     width: 100%;
   }
