@@ -12,15 +12,15 @@
 </head>
 <body>
   <nav>
-    <ul id="navigation">
+    <ul class="nav" id="navigation">
       <li><a href="index.html">Home</a></li>
       <li><a href="index.html">Reset</a></li>
     </ul>
   </nav>
   <section id="js_website_test" aria-live="polite" >
-    <img src="assets/img/logo/desktop-logo.png" />
-    <h1>Website <span class="js_span">Performance</span> Audit</h1>
-    <p id="js_h1">Enter your web address and test it's performance.</p>
+    <img class="logo" src="assets/img/logo/desktop-logo.png" />
+    <h1 class="header">Website <span class="js_span">Performance</span> Audit</h1>
+    <h2 class="sub_header"id="js_h1">Enter your web address and test it's performance.</h2>
     <form id="website_form" action="get">
       <label for="js_url"></label>
       <input type="text" name="url" id="js_url" placeholder="https://luxurysandbox.com" value="" />
@@ -32,8 +32,8 @@
   <section id="js_contact" aria-live="polite"></section>
   <div id="load">
     <img src="assets/img/Orbit-256px.gif" alt="loading gif" />
-    <h2>As page load times go from:</h2>
-    <h2 id="load_text">1s to <span class="js_span" id="js_seconds">3</span>s the probability of losing users goes up by <span class="js_span" id="js_percent">30</span>%.</h2>
+    <h2 class="sub_header">As page load times go from:</h2>
+    <h2 class="sub_header" id="load_text">1s to <span class="js_span" id="js_seconds">3</span>s the probability of losing users goes up by <span class="js_span" id="js_percent">30</span>%.</h2>
     <p>Source: Google/SOASTA Research, 2017</p>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

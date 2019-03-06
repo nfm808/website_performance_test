@@ -95,24 +95,24 @@ function createResultsTemplate() {
   let mobileTime = (Math.round(DATA.mobile.timing.total)) * .001;
   let desktopTime = (Math.round(DATA.desktop.timing.total)) * .001;
   let overview = `<div id="overview">
-                    <div class="img_container">
-                      <img src="${DATA.siteImg}" alt="tested website screenshot" />
+                    <div class="screenshot_container">
+                      <img class="screenshot_img" src="${DATA.siteImg}" alt="tested website screenshot" />
                     </div>
-                    <h1>${DATA.desktop.finalUrl}</h1>
+                    <h1 class="header">${DATA.desktop.finalUrl}</h1>
                     <section id="score_overview">
                       <div id="mobile_results">
-                        <h2>Mobile</h2>
+                        <h2 class="sub_header">Mobile</h2>
                         <div class="chart_div" id="chart_div_mobile"></div>
                         <p id="js_loadtime">${mobileTime}s</p>
                       </div>
                       <div id="desktop_results">
-                        <h2>Desktop</h2>
+                        <h2 class="sub_header">Desktop</h2>
                         <div class="chart_div" id="chart_div_desktop"></div>
                         <p id="js_loadtime">${desktopTime}s</p>
                       </div>
                     </section>
-                    <div class="timeline_header" >
-                      <h2>Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
+                    <div class="timeline_header timeline_container" >
+                      <h2 class="sub_header">Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
                       <div class="timeline_button_container">
                         <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
                         <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
@@ -120,7 +120,7 @@ function createResultsTemplate() {
                     </div>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
-                      <h2>Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
+                      <h2 class="sub_header">Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free Consult</button>
                       <p id="js_source">Sources</p>
                       <div id="source">
@@ -173,7 +173,7 @@ function displayMobileRender() {
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail"src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
 };
 function handleDesktopDetailButton() {
@@ -206,7 +206,7 @@ function displayDesktopRender() {
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<div class="thumb_box"><img src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail" src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
 };
 function handleSourceClick() {
@@ -223,7 +223,7 @@ function handleBookButton() {
 };
 // 04 - contact page
 function createContactForm() {
-  let copy = `<div class="contact_copy"><h2>Fill out and submit the form below to schedule your free consultation for <span class="js_span">${DATA.desktop.requestedUrl}</span>.</h2></div>`;
+  let copy = `<div class="contact_copy"><h1 class="header">Contact Us</h1><h2 class="sub_header">Fill out and submit the form below to schedule your free consultation for <span class="js_span">${DATA.desktop.requestedUrl}</span>.</h2></div>`;
   let contact = `<form action="/" method="post" class="contact-form" id="contact-form">
                   <label id="name-label" for="name">Name</label>
                   <input id="name" type="text" placeholder="Your Name" aria-placeholder="Your Name" required aria-required="true">
@@ -292,13 +292,13 @@ function validateForm() {
 function handleSubmitForm() {
   $('#submit').click(function(e) {
     e.preventDefault();
-    $('#js_contact h3').remove();
+    $('.error_response').remove();
     if (validateForm() === true) {
       console.log(`handleSubmitForm() was a success`)
-      $('#js_contact').append(`<h3>Thank you and we will be in contact soon.</h3>`)
+      $('#js_contact').append(`<h3 class="error_response">Thank you and we will be in contact soon.</h3>`)
     } else {
       console.log(`handleSubmitForm() was a fail`)
-      $('#js_contact').append(`<h3>Please check form and try again.</h3>`)
+      $('#js_contact').append(`<h3 class="error_response">Please check form and try again.</h3>`)
     };
   });
 };
