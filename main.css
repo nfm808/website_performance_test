@@ -250,7 +250,7 @@ nav a {
   color: #E3872D;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 750px) {
   body {
     font-size: 1.8rem;
   }
@@ -266,9 +266,18 @@ nav a {
     height: 360px;
     width: 360px;
   }
+  #js_website_test {
+    margin-top: 12vh;
+  }
+  #load {
+    margin-top: 15vh;
+  }
+  #results {
+    margin-top: 12vh;
+  }
   #js_contact {
     width: 70vw;
-    margin-top: 25px;
+    margin-top: 20vh;
   }
   .contact_copy {
     width: 70vw;
