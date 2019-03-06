@@ -26,6 +26,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 button {
   cursor: pointer;
+  background: #E3872D;
+  color: #041230;
 }
 input {
   padding: 2px;
@@ -98,10 +100,14 @@ nav ul {
   width: 100%;
 }
 .img_container {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin-left: auto;
   margin-right: auto;
+  border-top: 1px solid #E3872D;
+  border-right: 1px solid #E3872D;
+  border-bottom: 1px solid #041230;
+  border-left: 1px solid #041230;
 }
 .img_container img {
   width: 100%;
@@ -172,7 +178,6 @@ nav ul {
   padding-bottom: 10px;
 }
 .timeline_button_container button {
-  width: 25%;
   margin: 0px auto;
 }
 .chart_div {
@@ -233,10 +238,32 @@ nav ul {
     font-size: 1.8rem;
   }
   input {
-    width: 30vw;
+    width: 25vw;
   }
   button {
-    /* width: 15vw; */
-    font-
+    font-size: 1.8rem;
+    padding-top: 5px;
+  }
+  .img_container {
+    margin-top: 20px;
+    height: 360px;
+    width: 360px;
+  }
+  #js_contact {
+    width: 70vw;
+    margin-top: 25px;
+  }
+  .contact_copy {
+    width: 70vw;
+    padding: 10px 100px;
+  }
+  #contact-form {
+    padding: 15px;
+  }
+  #url {
+    margin-bottom: 15px;
+  }
+  #message {
+    width: 25vw;
   }
 }
