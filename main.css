@@ -26,8 +26,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 button {
   cursor: pointer;
-  background: #E3872D;
-  color: #041230;
+  color: #fff;
+  background-color: #E3872D;
+  font-weight: 600;
+  font-family: "Montserrat";
+  padding: 12px 35px;
+  border-radius: 3px;
+  transition: .6s;
+}
+button:hover {
+  color: #E3872D;
+  background-color: #041230;
 }
 input {
   padding: 2px;
@@ -47,6 +56,11 @@ nav ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
+
+}
+nav a {
+  text-decoration: none;
+  cursor: pointer;
 }
 #navigation a{
   color: #fff;
@@ -214,6 +228,9 @@ nav ul {
 #contact-form * {
   margin-bottom: 5px;
 }
+#contact-form button{
+  font-size: .8rem;
+}
 #contact-form label {
   color: #041230;
   font-weight: 600;
@@ -238,11 +255,11 @@ nav ul {
     font-size: 1.8rem;
   }
   input {
-    width: 25vw;
+    width: 100%;
   }
   button {
-    font-size: 1.8rem;
-    padding-top: 5px;
+    font-size: 1.5rem;
+    padding: 15px 35px;
   }
   .img_container {
     margin-top: 20px;
@@ -259,12 +276,24 @@ nav ul {
   }
   #contact-form {
     padding: 15px;
+    width: 66%;
+    margin: 0px auto;
   }
+
   #url {
     margin-bottom: 15px;
+    width: 100%;
   }
   #message {
-    width: 25vw;
+    width: 100%;
     height: 5vh;
   }
+}@media screen and (min-width: 1366px) {
+  #contact-form {
+    width: 40%;
+  }
+  .contact_copy {
+    padding: 10px 180px;
+  }
+
 }
