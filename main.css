@@ -265,5 +265,6 @@ nav ul {
   }
   #message {
     width: 25vw;
+    height: 5vh;
   }
 }
