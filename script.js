@@ -13,12 +13,15 @@ function handleWebsiteForm() {
   $('#website_form').submit(function (e) {
     e.preventDefault();
     let input = $('#js_url').val();
-    toggleDisplayById('website_form');
-    fadeElementById('js_website_test', 'fast');
-    handleLoadScreen();
-    fadeElementById('load');
-    $("#load").css({ "display": "flex" });
-    formatWebsiteString(input);
+    if (input == "") {
+      return handleErrorDisplay('false');
+    } else {
+      fadeElementById('js_website_test', 'fast');
+      handleLoadScreen();
+      fadeElementById('load');
+      $("#load").css({ "display": "flex" });
+      formatWebsiteString(input);
+    };
   });
 };
 function formatWebsiteString(input) {
@@ -58,7 +61,7 @@ function getPageInsightsDesktop(pageDesktop, option) {
       sortElements(desktopJson.lighthouseResult);
     })
     .catch(err => {
-      console.log(`error: ${err.message}`);
+      console.log('Error with your request');
     });
 };
 function getPageInsightsMobile(pageMobile, option) {
@@ -71,8 +74,19 @@ function getPageInsightsMobile(pageMobile, option) {
     })
     .then(mobileJson => sortElements(mobileJson.lighthouseResult))
     .catch(err => {
-      console.log(`error: ${err.message}`);
+      handleErrorDisplay(err.message);
     });
+};
+function handleErrorDisplay(errorMessage) {
+  $('.errorMessage').empty();
+  if (errorMessage == 'false') {
+    return $('.errorMessage').append(`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`);
+  } else {
+    fadeElementById('load');
+    $("#load").removeAttr('style');
+    $('.errorMessage').append(`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`);
+    fadeElementById('js_website_test', 'fast');
+  };
 };
 function createSnapshotUrl(uri) {
   const snapshot = `https://image.thum.io/get/${uri}`;
