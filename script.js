@@ -13,6 +13,7 @@ function handleWebsiteForm() {
   $('#website_form').submit(function (e) {
     e.preventDefault();
     let input = $('#js_url').val();
+    DATA.url = input;
     if (input == "") {
       return handleErrorDisplay('false');
     } else {
@@ -74,7 +75,7 @@ function getPageInsightsMobile(pageMobile, option) {
     })
     .then(mobileJson => sortElements(mobileJson.lighthouseResult))
     .catch(err => {
-      handleErrorDisplay(err.message);
+      handleErrorDisplay(DATA.url);
     });
 };
 function handleErrorDisplay(errorMessage) {
@@ -84,7 +85,8 @@ function handleErrorDisplay(errorMessage) {
   } else {
     fadeElementById('load');
     $("#load").removeAttr('style');
-    $('.errorMessage').append(`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`);
+    $('#js_url').focus();
+    $('.errorMessage').append(`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p><p>You entered: <span class="js_span">${errorMessage}</span></p>`);
     fadeElementById('js_website_test', 'fast');
   };
 };
