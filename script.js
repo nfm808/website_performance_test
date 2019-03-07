@@ -17,7 +17,7 @@ function handleWebsiteForm() {
     fadeElementById('js_website_test', 'fast');
     handleLoadScreen();
     fadeElementById('load');
-    $("#load").css({"display":"flex"});
+    $("#load").css({ "display": "flex" });
     formatWebsiteString(input);
   });
 };
@@ -136,7 +136,7 @@ function displayResultsPage(overview) {
   fadeElementById('load');
   $('#results').append(overview);
   fadeElementById('results');
-  $("#results").css({"display":"flex"});
+  $("#results").css({ "display": "flex" });
   drawChart();
   handleMobileDetailButton();
   handleDesktopDetailButton();
@@ -144,10 +144,10 @@ function displayResultsPage(overview) {
   handleSourceClick();
 };
 function handleMobileDetailButton() {
-  $('#js_mobile_button').click(function(e) {
+  $('#js_mobile_button').click(function (e) {
     let style = $('#render_timeline').attr('style');
     $('.render_timeline').empty();
-    displayMobileRender(); 
+    displayMobileRender();
     $('.render_timeline').css("background", "#041230");
     $(".thumb_box p").css("color", "#fff");
     if (style == undefined || style == 'display: none;') {
@@ -161,7 +161,7 @@ function handleMobileDetailButton() {
       fadeElementById('render_timeline', 'slow');
       $('.js_device').fadeToggle();
       $('.js_device').text('mobile');
-      $('.js_device').fadeToggle();  
+      $('.js_device').fadeToggle();
     }
   });
 };
@@ -170,6 +170,7 @@ function displayMobileRender() {
   let src = [];
   let time = [];
   $('.render_timeline').append(`<h4 class="close_div close_mobile"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
+  closeTimelineDiv();
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
@@ -177,12 +178,12 @@ function displayMobileRender() {
   };
 };
 function handleDesktopDetailButton() {
-  $('#js_desktop_button').click(function(e) {
+  $('#js_desktop_button').click(function (e) {
     let style = $('#render_timeline').attr('style');
     $('.render_timeline').empty();
     $('.render_timeline').css("background", "#fff");
-    displayDesktopRender(); 
-    $(".thumb_box>p").css("color", "#041230"); 
+    displayDesktopRender();
+    $(".thumb_box>p").css("color", "#041230");
     if (style == undefined || style == 'display: none;') {
       $('.js_device').text('desktop');
       slideById('render_timeline');
@@ -190,11 +191,11 @@ function handleDesktopDetailButton() {
       fadeElementById('render_timeline', 'fast');
       $('.render_timeline').empty();
       displayDesktopRender();
-      $(".thumb_box>p").css("color", "#041230"); 
+      $(".thumb_box>p").css("color", "#041230");
       fadeElementById('render_timeline', 'slow');
       $('.js_device').fadeToggle();
       $('.js_device').text('desktop');
-      $('.js_device').fadeToggle();  
+      $('.js_device').fadeToggle();
     }
   });
 };
@@ -203,19 +204,30 @@ function displayDesktopRender() {
   let src = [];
   let time = [];
   $('.render_timeline').append(`<h4 class="close_div"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
+  closeTimelineDiv();
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
     $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail" src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
   };
 };
+function closeTimelineDiv() {
+  $('.close_div').click(function (e) {
+    e.preventDefault();
+    slideById('render_timeline');
+    setTimeout(function() {
+      $('.render_timeline').removeAttr("style");
+    }, 1000);
+    console.log($('.render_timeline').attr('style'));
+  });
+};
 function handleSourceClick() {
-  $('#js_source').click(function() {
+  $('#js_source').click(function () {
     slideById('source');
   });
 };
 function handleBookButton() {
-  $('#js_book_button').click(function() {
+  $('#js_book_button').click(function () {
     $('#js_contact').empty();
     fadeElementById('results', 'fast');
     createContactForm();
@@ -238,7 +250,7 @@ function createContactForm() {
   fadeElementById('js_contact', 'slow');
   $('#js_contact').prepend(copy);
   $('#js_contact').append(contact);
-  $("#js_contact").css({"display":"flex","flex-direction":"column"});
+  $("#js_contact").css({ "display": "flex", "flex-direction": "column" });
   handleResultsButton();
   handleSubmitForm();
 };
@@ -253,44 +265,44 @@ function validateForm() {
   let message = $('#message').val();
   if (name === "" || name === "Your Name") {
     $('#name-label').text(`Required`);
-    $('#name-label').css({"color": "red"});
+    $('#name-label').css({ "color": "red" });
     $('#name').focus();
     return false;
   }
   if (name !== "" || name !== "Your Name") {
     $('#name-label').text(`Name`);
-    $('#name-label').css({"color": "#041230"});
-  } 
+    $('#name-label').css({ "color": "#041230" });
+  }
   if (email == "" || email == "Your Email") {
     $('#email-label').text(`Valid Email Required`);
-    $('#email-label').css({"color": "red"});
+    $('#email-label').css({ "color": "red" });
     $('#email').focus();
     return false;
   }
   if (validateEmail(email) === false) {
     $('#email-label').text(`Valid Email Required`);
-    $('#email-label').css({"color": "red"});
+    $('#email-label').css({ "color": "red" });
     $('#email').focus();
     return false;
   }
   if (validateEmail(email) === true) {
     $('#email-label').text(`Email`);
-    $('#email-label').css({"color": "#041230"});
-  } 
+    $('#email-label').css({ "color": "#041230" });
+  }
   if (message === "" || message === "Your Message") {
     $('#message-label').text(`Required`);
-    $('#message-label').css({"color": "red"});
+    $('#message-label').css({ "color": "red" });
     $('#message').focus();
     return false;
   }
   if (message !== "" || message !== "Your Name") {
     $('#message-label').text(`Let's Talk`);
-    $('#message-label').css({"color": "#041230"});
-  } 
+    $('#message-label').css({ "color": "#041230" });
+  }
   return true;
 };
 function handleSubmitForm() {
-  $('#submit').click(function(e) {
+  $('#submit').click(function (e) {
     e.preventDefault();
     $('.error_response').remove();
     if (validateForm() === true) {
@@ -303,7 +315,7 @@ function handleSubmitForm() {
   });
 };
 function handleResultsButton() {
-  $('#js_results_button').click(function() {
+  $('#js_results_button').click(function () {
     fadeElementById('js_contact', 'fast');
     fadeElementById('results', 'slow');
   });
@@ -326,7 +338,7 @@ function toggleDisplayById(id) {
   $(`#${id}`).toggle();
 };
 function slideById(id) {
- $(`#${id}`).slideToggle();
+  $(`#${id}`).slideToggle();
 };
 // 06 load Page
 function handleLoadScreen() {
@@ -352,7 +364,7 @@ function changeText(id, str) {
 };
 // 07 - Google Charts
 function loadChart() {
-  google.charts.load('current', {'packages':['gauge']});
+  google.charts.load('current', { 'packages': ['gauge'] });
 };
 function drawChart() {
 
@@ -372,25 +384,25 @@ function drawChart() {
     yellowFrom: 50, yellowTo: 90,
     greenFrom: 90, greenTo: 100,
     minorTicks: 5,
-    animation:{
+    animation: {
       duration: 9000,
       easing: 'inAndOut'
     }
   };
-  
+
   var chart = new google.visualization.Gauge(document.getElementById('chart_div_mobile'));
   var chartD = new google.visualization.Gauge(document.getElementById('chart_div_desktop'));
 
   chart.draw(dataM, options);
   chartD.draw(dataD, options);
 
-  setTimeout(function() {
+  setTimeout(function () {
     dataM.setValue(0, 1, 0 + (DATA.mobile.categories.performance.score * 100));
     dataD.setValue(0, 1, 0 + (DATA.desktop.categories.performance.score * 100))
     chart.draw(dataM, options);
     chartD.draw(dataD, options);
   }, 200);
-  
+
 };
 function determineScoreDisplay(x) {
   if (x < .50) {
