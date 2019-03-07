@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat";
 }
 button {
-  width: 33%;
+  width: 100px;
   cursor: pointer;
   color: #fff;
   background-color: #E3872D;
@@ -99,7 +99,8 @@ a {
   font-size: large;
 }
 .website_form_button {
-  width: 40%;
+  width: 100px;
+  height: auto;
 }
 #load {
   width: 90vw;
@@ -288,7 +289,8 @@ a {
     padding: 10px 20px;
   }
   .website_form_button {
-    width: 15%;
+    width: 100px;
+    height: auto;
     font-size: small;
   }
   /* #js_website_test {
