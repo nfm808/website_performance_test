@@ -62,7 +62,7 @@ function getPageInsightsDesktop(pageDesktop, option) {
       sortElements(desktopJson.lighthouseResult);
     })
     .catch(err => {
-      console.log('Error with your request');
+      console.log(`Error with your request: ${err.message}`);
     });
 };
 function getPageInsightsMobile(pageMobile, option) {
@@ -75,6 +75,7 @@ function getPageInsightsMobile(pageMobile, option) {
     })
     .then(mobileJson => sortElements(mobileJson.lighthouseResult))
     .catch(err => {
+      console.log(err.message);
       handleErrorDisplay(DATA.url);
     });
 };
@@ -104,7 +105,7 @@ function sortElements(data) {
   } else if (data.configSettings.emulatedFormFactor == 'desktop') {
     DATA.desktop = data;
   }
-  if (Object.keys(DATA).length == 3) {
+  if (Object.keys(DATA).length == 4) {
     createResultsTemplate();
   }
 };
