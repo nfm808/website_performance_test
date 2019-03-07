@@ -182,8 +182,8 @@ a {
 }
 .close_div {
   position: absolute;
-  top:5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
   z-index: 1;
 }
 .timeline_button_container {
