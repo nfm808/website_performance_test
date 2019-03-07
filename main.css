@@ -27,12 +27,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat";
 }
 button {
+  width: 33%;
   cursor: pointer;
   color: #fff;
   background-color: #E3872D;
   font-weight: 600;
   font-family: "Montserrat";
-  padding: 12px 22px;
+  padding: 5px 15px;
   border-radius: 3px;
   transition: .6s;
 }
@@ -271,8 +272,9 @@ a {
     width: 100%;
   }
   button {
-    font-size: 1.5rem;
-    padding: 15px 35px;
+    font-size: large;
+    padding: 5px 15px;
+    width: 25%;
   }
   .img_container {
     margin-top: 20px;
