@@ -169,7 +169,7 @@ function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<h4 class="close_div nav_header"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h4 class="close_div close_mobile"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;

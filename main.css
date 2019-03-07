@@ -64,6 +64,10 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+.nav_header {
+  font-size: larger;
+  text-transform: uppercase;
+}
 .nav_header a{
   color: #fff; 
 }
@@ -185,6 +189,12 @@ a {
   top: 10px;
   left: 10px;
   z-index: 1;
+  font-size: larger;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+.close_mobile a{
+  color: #fff;
 }
 .timeline_button_container {
   width: 100%;
