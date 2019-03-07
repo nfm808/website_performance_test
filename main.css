@@ -33,17 +33,13 @@ button {
   background-color: #E3872D;
   font-weight: 600;
   font-family: "Montserrat";
-  padding: 5px 15px;
+  padding: 2px 7px;
   border-radius: 3px;
   transition: .6s;
 }
 button:hover {
   color: #E3872D;
   background-color: #041230;
-}
-input {
-  padding: 2px;
-  margin-bottom: 5px;
 }
 nav {
   width: 100%;
@@ -87,11 +83,22 @@ a {
   height: 80px;
 }
 #website_form {
-  width: 100%;
+  width: 80%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+#js_url {
+  padding: 5px 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: large;
+}
+.website_form_button {
+  width: 40%;
 }
 #load {
   width: 90vw;
@@ -264,22 +271,24 @@ a {
   color: #E3872D;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 900px) {
   /* body {
     font-size: 1.8rem;
   } */
-  input {
-    width: 100%;
-  }
   button {
     font-size: large;
     padding: 5px 15px;
     width: 25%;
   }
-  .img_container {
-    margin-top: 20px;
-    height: 360px;
-    width: 360px;
+  #website_form {
+    flex-direction: row;
+  }
+  #js_url {
+    padding: 10px 20px;
+  }
+  .website_form_button {
+    width: 15%;
+    font-size: small;
   }
   /* #js_website_test {
     margin-top: 12vh;
@@ -299,7 +308,7 @@ a {
     margin-top: 20vh;
   } */
   .contact_copy {
-    width: 70vw;
+    width: 100%;
     padding: 10px 100px;
   }
   #contact-form {
@@ -323,5 +332,4 @@ a {
   .contact_copy {
     padding: 10px 180px;
   }
-
 }

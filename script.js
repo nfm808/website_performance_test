@@ -114,14 +114,14 @@ function createResultsTemplate() {
                     <div class="timeline_container" >
                       <h2 class="timeline_header sub_header">Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
                       <div class="timeline_button_container">
-                        <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
-                        <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
+                        <button class="detail_button" id="js_mobile_button" type="button">View <br>Timeline</button>
+                        <button class="detail_button" id="js_desktop_button" type="button">View <br>Timeline</button>
                       </div>
                     </div>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
                       <h2 class="sub_header">Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
-                      <button type="button" id="js_book_button">Book Free Consult</button>
+                      <button type="button" id="js_book_button">Book Free<br>Consult</button>
                       <p id="js_source">Sources</p>
                       <div id="source">
                         <p>Test: <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Google PageSpeed Insights</a></p>
