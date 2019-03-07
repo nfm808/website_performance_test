@@ -80,6 +80,7 @@ function getPageInsightsMobile(pageMobile, option) {
 };
 function handleErrorDisplay(errorMessage) {
   $('.errorMessage').empty();
+  $('#js_url').focus();
   if (errorMessage == 'false') {
     return $('.errorMessage').append(`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`);
   } else {
