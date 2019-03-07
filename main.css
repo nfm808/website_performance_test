@@ -280,7 +280,7 @@ a {
   button {
     font-size: large;
     padding: 5px 15px;
-    width: 25%;
+    width: 150px;
   }
   #website_form {
     flex-direction: row;
