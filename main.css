@@ -80,7 +80,8 @@ a {
 }
 .logo {
   padding-bottom: 10px;
-  height: 80px;
+  width: 80px;
+  height: auto;
 }
 #website_form {
   width: 80%;
@@ -293,10 +294,6 @@ a {
   /* #js_website_test {
     margin-top: 12vh;
   } */
-  .logo {
-    width: 70px;
-    height: auto;
-  }
   /* #load {
     margin-top: 15vh;
   }
