@@ -111,8 +111,8 @@ function createResultsTemplate() {
                         <p id="js_loadtime">${desktopTime}s</p>
                       </div>
                     </section>
-                    <div class="timeline_header timeline_container" >
-                      <h2 class="sub_header">Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
+                    <div class="timeline_container" >
+                      <h2 class="timeline_header sub_header">Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
                       <div class="timeline_button_container">
                         <button class="detail_button" id="js_mobile_button" type="button">View Timeline</button>
                         <button class="detail_button" id="js_desktop_button" type="button">View Timeline</button>
@@ -169,7 +169,7 @@ function displayMobileRender() {
   let info = DATA.mobile.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h4 class="close_div nav_header"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
@@ -202,7 +202,7 @@ function displayDesktopRender() {
   let info = DATA.desktop.audits["screenshot-thumbnails"].details.items;
   let src = [];
   let time = [];
-  $('.render_timeline').append(`<div class="render_thumbnails"></div>`);
+  $('.render_timeline').append(`<h4 class="close_div"><a href="#">X</a></h4><div class="render_thumbnails"></div>`);
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
