@@ -137,7 +137,7 @@ function createResultsTemplate() {
                     </div>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
-                      <h2 class="sub_header">Schedule a <span class="js_span">free</span> professional review of your site today and learn how to achieve better performance!</h2>
+                      <h2 class="sub_header greyText callToAction addMarginBottom">Schedule a <span class="js_span">free</span> professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free<br>Consult</button>
                       <p id="js_source" class="greyText">Sources</p>
                       <div id="source">
