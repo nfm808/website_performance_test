@@ -38,6 +38,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.375em;
   margin-bottom: 0em;
 }
+.addMarginBottom {
+  margin-bottom: 20px;
+}
 p {
   font-size: .9em;
   line-height: 1.375em;
@@ -341,7 +344,12 @@ a {
     width: 66%;
     margin: 0px auto;
   }
-
+  .callToAction {
+    padding: 5px 15px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }  
   #url {
     margin-bottom: 15px;
     width: 100%;
