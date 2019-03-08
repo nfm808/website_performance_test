@@ -340,9 +340,14 @@ a {
     padding: 10px 100px;
   }
   #contact-form {
+    flex-direction: row;
+    flex-wrap: wrap;
     padding: 15px;
-    width: 66%;
+    width: 300px;
     margin: 0px auto;
+  }
+  #contact-form button {
+    width: 100px;
   }
   .callToAction {
     padding: 5px 15px;
@@ -363,9 +368,6 @@ a {
     height: auto;
   }
 }@media screen and (min-width: 1366px) {
-  #contact-form {
-    width: 40%;
-  }
   .contact_copy {
     padding: 10px 180px;
   }
