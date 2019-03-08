@@ -116,21 +116,20 @@ function createResultsTemplate() {
                     <div class="screenshot_container">
                       <img class="screenshot_img" src="${DATA.siteImg}" alt="tested website screenshot" />
                     </div>
-                    <h1 class="header">${DATA.desktop.finalUrl}</h1>
                     <section id="score_overview">
                       <div id="mobile_results">
-                        <h2 class="sub_header">Mobile</h2>
+                        <h2 class="header">Mobile</h2>
                         <div class="chart_div" id="chart_div_mobile"></div>
-                        <p id="js_loadtime">${mobileTime}s</p>
+                        <p id="js_loadtime" class="js_span sub_header">${mobileTime}s</p>
                       </div>
                       <div id="desktop_results">
-                        <h2 class="sub_header">Desktop</h2>
+                        <h2 class="header">Desktop</h2>
                         <div class="chart_div" id="chart_div_desktop"></div>
-                        <p id="js_loadtime">${desktopTime}s</p>
+                        <p id="js_loadtime" class="js_span sub_header">${desktopTime}s</p>
                       </div>
                     </section>
                     <div class="timeline_container" >
-                      <h2 class="timeline_header sub_header">Here is what your <span class="js_device js_span"></span> users are seeing on load</h2>
+                      <h2 class="timeline_header sub_header">Here is what your <span class="js_device header js_span"></span> users are seeing on load</h2>
                       <div class="timeline_button_container">
                         <button class="detail_button" id="js_mobile_button" type="button">View <br>Timeline</button>
                         <button class="detail_button" id="js_desktop_button" type="button">View <br>Timeline</button>
@@ -138,9 +137,9 @@ function createResultsTemplate() {
                     </div>
                     <div class="render_timeline" id="render_timeline"></div>
                     <div id="book">
-                      <h2 class="sub_header">Schedule a free professional review of your site today and learn how to achieve better performance!</h2>
+                      <h2 class="sub_header">Schedule a <span class="js_span">free</span> professional review of your site today and learn how to achieve better performance!</h2>
                       <button type="button" id="js_book_button">Book Free<br>Consult</button>
-                      <p id="js_source">Sources</p>
+                      <p id="js_source" class="greyText">Sources</p>
                       <div id="source">
                         <p>Test: <a href="https://developers.google.com/speed/pagespeed/insights/?url=${DATA.desktop.requestedUrl}" target="_blank">Google PageSpeed Insights</a></p>
                         <p>Chart Visualization: Google Charts</p>
@@ -233,10 +232,9 @@ function closeTimelineDiv() {
   $('.close_div').click(function (e) {
     e.preventDefault();
     slideById('render_timeline');
-    setTimeout(function() {
+    setTimeout(function () {
       $('.render_timeline').removeAttr("style");
-    }, 1000);
-    console.log($('.render_timeline').attr('style'));
+    }, 300);
   });
 };
 function handleSourceClick() {

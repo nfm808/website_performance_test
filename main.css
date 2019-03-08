@@ -26,6 +26,27 @@ h1, h2, h3, h4, h5, h6 {
   line-height: inherit;
   font-family: "Montserrat";
 }
+.header {
+  font-size: 1.3125em;
+  line-height: 1.04761905em;
+  margin-top: 1.04761905em;
+  margin-bottom: 0em;
+}
+.sub_header {
+  font-size: 1em;
+  line-height: 1.375em;
+  margin-top: 1.375em;
+  margin-bottom: 0em;
+}
+p {
+  font-size: .9em;
+  line-height: 1.375em;
+  margin-top: 1.375em;
+  margin-bottom: 0em;
+}
+.greyText {
+  color: dimgray;
+}
 button {
   width: 100px;
   cursor: pointer;
@@ -194,6 +215,7 @@ a {
   width: 75%;
   background: #f6f7fd;
   padding: 5px;
+  margin-bottom: 20px;
 }
 .close_div {
   position: absolute;
@@ -265,18 +287,26 @@ a {
   background: #041230;
   color: white;
   text-align: center;
-  padding: 0 5px;
-  font-size: .9rem;
+  padding: 0px 5px 10px 5px;
 }
-#js_contact h3 {
-  text-align: center;
-  color: #E3872D;
-}
+
 
 @media screen and (min-width: 900px) {
   /* body {
     font-size: 1.8rem;
   } */
+  .header {
+    font-size: 1.75em;
+    line-height: 1.57142857em;
+    margin-top: 0.78571429em;
+    margin-bottom: 0.78571429em;
+  }
+  .sub_header {
+    font-size: 1.3125em;
+    line-height: 1.04761905em;
+    margin-top: 1.04761905em;
+    /* margin-bottom: 0em; */
+  }
   button {
     font-size: large;
     padding: 5px 15px;
@@ -293,19 +323,18 @@ a {
     height: auto;
     font-size: small;
   }
-  /* #js_website_test {
-    margin-top: 12vh;
-  } */
-  /* #load {
-    margin-top: 15vh;
+  .timeline_header {
+    width: 66%;
+    background: #f6f7fd;
+    padding: 5px 15px 10px 15px;
+    margin-bottom: 20px;
   }
   #results {
-    margin-top: 12vh;
-  }
+    width: 66vw;
+  } 
   #js_contact {
-    width: 70vw;
-    margin-top: 20vh;
-  } */
+    width: 66vw;
+  }
   .contact_copy {
     width: 100%;
     padding: 10px 100px;
@@ -331,4 +360,11 @@ a {
   .contact_copy {
     padding: 10px 180px;
   }
+  #js_contact {
+    width: 50vw;
+  }
+  #results {
+    width: 50vw;
+  } 
+
 }
