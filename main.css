@@ -293,9 +293,6 @@ a {
 
 
 @media screen and (min-width: 900px) {
-  /* body {
-    font-size: 1.8rem;
-  } */
   .header {
     font-size: 1.75em;
     line-height: 1.57142857em;
@@ -306,7 +303,6 @@ a {
     font-size: 1.3125em;
     line-height: 1.04761905em;
     margin-top: 1.04761905em;
-    /* margin-bottom: 0em; */
   }
   button {
     font-size: large;
@@ -353,6 +349,10 @@ a {
   #message {
     width: 100%;
     height: 5vh;
+  }
+  .screenshot_container {
+    width: 400px;
+    height: auto;
   }
 }@media screen and (min-width: 1366px) {
   #contact-form {
