@@ -191,7 +191,7 @@ function displayMobileRender() {
   for (let i = 0; i < info.length; i++) {
     src = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.mobile.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail"src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail"src="data:image/jpeg;base64, ${src}" alt="website render by load time image"/><p>${time}s</p></div>`);
   };
 };
 function handleDesktopDetailButton() {
@@ -225,7 +225,7 @@ function displayDesktopRender() {
   for (let i = 0; i < info.length; i++) {
     src = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].data;
     time = DATA.desktop.audits["screenshot-thumbnails"].details.items[i].timing * .001;
-    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail" src="data:image/jpeg;base64, ${src}" /><p>${time}s</p></div>`);
+    $('.render_thumbnails').append(`<div class="thumb_box"><img class="thumbnail" src="data:image/jpeg;base64, ${src}" alt="website render by load time image" /><p>${time}s</p></div>`);
   };
 };
 function closeTimelineDiv() {
