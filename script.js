@@ -62,7 +62,7 @@ function getPageInsightsDesktop(pageDesktop, option) {
       sortElements(desktopJson.lighthouseResult);
     })
     .catch(err => {
-      console.log(`Error with your request: ${err.message}`);
+      // console.log(`Error with your request: ${err.message}`);
     });
 };
 function getPageInsightsMobile(pageMobile, option) {
@@ -75,7 +75,7 @@ function getPageInsightsMobile(pageMobile, option) {
     })
     .then(mobileJson => sortElements(mobileJson.lighthouseResult))
     .catch(err => {
-      console.log(err.message);
+      // console.log(err.message);
       handleErrorDisplay(DATA.url);
     });
 };
@@ -271,7 +271,6 @@ function createContactForm() {
   handleSubmitForm();
 };
 function validateEmail(email) {
-  console.log(`validateEmail ran`);
   let re = /\S+@\S+\.\S+/;
   return re.test(String(email).toLowerCase());
 };
@@ -322,10 +321,8 @@ function handleSubmitForm() {
     e.preventDefault();
     $('.error_response').remove();
     if (validateForm() === true) {
-      console.log(`handleSubmitForm() was a success`)
       $('#js_contact').append(`<h3 class="error_response">Thank you and we will be in contact soon.</h3>`)
     } else {
-      console.log(`handleSubmitForm() was a fail`)
       $('#js_contact').append(`<h3 class="error_response">Please check form and try again.</h3>`)
     };
   });
