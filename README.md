@@ -11,6 +11,8 @@ A small business owner has a site that they, or their one nephew, built with a p
 
 HTML5, Javascript, and CSS
 
+## Screenshots:
+
 ### Landing Page:
 
 ![Screenshot of landing page](assets/img/landing.jpg?raw=true "Landing Page")
