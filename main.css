@@ -293,7 +293,6 @@ a {
   padding: 0px 5px 10px 5px;
 }
 
-
 @media screen and (min-width: 900px) {
   .header {
     font-size: 1.75em;
@@ -366,6 +365,12 @@ a {
     width: 400px;
     height: auto;
   }
+  .error_response {
+    width: 66%;
+    margin: 5px auto;
+    text-align: center;
+  }
+  
 }@media screen and (min-width: 1366px) {
   .contact_copy {
     padding: 10px 180px;
