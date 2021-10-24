@@ -84,14 +84,14 @@ function handleErrorDisplay(errorMessage) {
 	$("#js_url").focus();
 	if (errorMessage == "false") {
 		return $(".errorMessage").append(
-			`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`
+			`<p class="whiteSmokeText">Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p>`
 		);
 	} else {
 		fadeElementById("load");
 		$("#load").removeAttr("style");
 		$("#js_url").focus();
 		$(".errorMessage").append(
-			`<p>Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p><p>You entered: <span class="js_span">${errorMessage}</span></p>`
+			`<p class="whiteSmokeText">Something wasn't quite right.</p><p>Make sure you entered in the address correctly and try again</p><p>You entered: <span class="js_span">${errorMessage}</span></p>`
 		);
 		fadeElementById("js_website_test", "fast");
 	}
@@ -110,7 +110,6 @@ function sortElements(data) {
 		DATA.desktop = data;
 	}
 	if (Object.keys(DATA).length == 4) {
-		console.log("DATA: ", DATA);
 		createResultsTemplate();
 	}
 }
@@ -125,12 +124,12 @@ function createResultsTemplate() {
                       <div id="mobile_results">
                         <h2 class="header">Mobile</h2>
                         <div class="chart_div" id="chart_div_mobile"></div>
-                        <p id="js_loadtime" class="js_span sub_header">${mobileTime}s</p>
+                        <p id="js_loadtime" class="js_span sub_header">${mobileTime} seconds</p>
                       </div>
                       <div id="desktop_results">
                         <h2 class="header">Desktop</h2>
                         <div class="chart_div" id="chart_div_desktop"></div>
-                        <p id="js_loadtime" class="js_span sub_header">${desktopTime}s</p>
+                        <p id="js_loadtime" class="js_span sub_header">${desktopTime} seconds</p>
                       </div>
                     </section>
                     <div class="timeline_container" >
